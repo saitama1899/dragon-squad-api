@@ -30,8 +30,8 @@ gem 'grape_on_rails_routes'
 # OpenCage geocoding API
 gem 'opencage-geocoder'
 
-# Use wdm to avoid polling for changes
-gem 'wdm', '>= 0.1.0'
+# Use listen to avoid polling for changes
+gem 'listen'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
