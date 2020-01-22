@@ -20,7 +20,18 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+
+# Use Grape as the framework for creating REST-like APIs
+gem 'grape', '~> 1.2'
+gem 'grape-entity'
+gem 'grape_on_rails_routes'
+
+# OpenCage geocoding API
+gem 'opencage-geocoder'
+
+# Use wdm to avoid polling for changes
+gem 'wdm', '>= 0.1.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -36,11 +47,23 @@ gem 'dotenv-rails', groups: [:development, :test]
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Use Rspec to support Rspec examples for requests, controllers, models, etc
+  gem 'rspec-rails', '~> 3.9'
+  #  Use factory bot to create mockups of database
+  gem 'factory_bot_rails', '~> 4.0'
+  # Use shoulda for one line simple test
+  gem 'shoulda-matchers', '~> 3.1'
+  # Use faker to generate fake data
+  gem 'faker'
+  # Use database cleaner to remove fake data
+  gem 'database_cleaner'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  # Use rubocop to analyze code
+  gem 'rubocop', '~> 0.59.0', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
