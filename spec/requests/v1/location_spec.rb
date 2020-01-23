@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-URL = "/api/v1/searches?keyword=Consell de cent"
+URL = "/api/v1/locations?keyword=Consell de cent"
 
 describe 'GET locations', type: :request do
   before { get URL }

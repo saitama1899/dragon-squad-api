@@ -5,6 +5,6 @@ module Badi
 
     mount Badi::Health
     # mount Badi::V1::Rooms
-    mount Badi::V1::Searches
+    mount Badi::V1::Locations
   end
 end
