@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-URL = "/api/v1/locations"
+URL = "/api/v1/locations?keyword=Consell de cent"
 
 describe 'GET locations', type: :request do
   before { get URL }
@@ -10,11 +10,6 @@ describe 'GET locations', type: :request do
 
   it 'should return a text' do
     expect(json).not_to be_empty
-  end
-
-  it 'should return a json with keys' do
-    payload = JSON.parse(response.body)
-    expect(payload["foo"]).to eq("bar")
   end
 end
 
