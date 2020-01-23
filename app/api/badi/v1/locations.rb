@@ -8,7 +8,7 @@ module Badi
       resource :locations do
         desc 'Return list of possible locations'
         get do
-          status :ok
+          present :ok
         end
       end
     end
