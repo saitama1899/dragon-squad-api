@@ -6,7 +6,7 @@ class LocationSearcher
   CITY_KEY = "city"
   ROAD_KEY = "road"
 
-  def self.Search(location)
+  def self.call(location)
     possible_locations = API_GEOCODE.geocode(location)
 
     results = []

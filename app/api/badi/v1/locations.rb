@@ -8,7 +8,7 @@ module Badi
       resource :locations do
         desc 'Return list of possible locations'
         get do
-          present LocationSearcher.Search(params[:keyword])
+          present LocationSearcher.call(params[:keyword])
         end
       end
     end
