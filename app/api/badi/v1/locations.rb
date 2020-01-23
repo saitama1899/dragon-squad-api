@@ -5,12 +5,10 @@ module Badi
       format :json
       prefix :api
 
-      PARAM_REQUEST_LOCATION = :keyword
-
       resource :locations do
         desc 'Return list of possible locations'
         get do
-          present LocationSearcher.Search(params[PARAM_REQUEST_LOCATION])
+          present LocationSearcher.Search(params[:keyword])
         end
       end
     end
