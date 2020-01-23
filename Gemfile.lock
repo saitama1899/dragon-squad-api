@@ -120,6 +120,9 @@ GEM
     jaro_winkler (1.5.4)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
+    listen (3.2.1)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -184,6 +187,9 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (3.0.0)
     rake (13.0.1)
+    rb-fsevent (0.10.3)
+    rb-inotify (0.10.1)
+      ffi (~> 1.0)
     rspec-core (3.9.1)
       rspec-support (~> 3.9.1)
     rspec-expectations (3.9.0)
@@ -241,7 +247,6 @@ GEM
     tzinfo-data (1.2019.3)
       tzinfo (>= 1.0.0)
     unicode-display_width (1.6.1)
-    wdm (0.1.1)
     web-console (4.0.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -271,6 +276,7 @@ DEPENDENCIES
   grape-entity
   grape_on_rails_routes
   jbuilder (~> 2.7)
+  listen
   opencage-geocoder
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
@@ -281,9 +287,8 @@ DEPENDENCIES
   shoulda-matchers (~> 3.1)
   turbolinks (~> 5)
   tzinfo-data
-  wdm (>= 0.1.0)
   web-console (>= 3.3.0)
-  webpacker (~> 4.0)
+  webpacker
 
 RUBY VERSION
    ruby 2.6.5p114
