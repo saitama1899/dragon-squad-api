@@ -8,7 +8,7 @@ module Badi
       resource :locations do
         desc 'Return list of possible locations'
         get do
-          present :ok
+          present LocationSearcher.Search("nowhere")
         end
       end
     end
