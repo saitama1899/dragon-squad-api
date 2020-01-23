@@ -4,7 +4,7 @@ describe 'GET locations', type: :request do
   it 'should return a 200 status code' do
     get '/api/v1/locations'
 
-    expect(response).to have_http_status(404)
+    expect(response).to have_http_status(200)
   end
 end
 
