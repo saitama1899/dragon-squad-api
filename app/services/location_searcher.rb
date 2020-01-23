@@ -2,8 +2,7 @@ require 'opencage/geocoder'
 require 'json'
 
 class LocationSearcher
-  KEY = 'a07e1766190643b79d64cf4ea64ab4b3'
-  API_GEOCODE = OpenCage::Geocoder.new(api_key: KEY)
+  API_GEOCODE = OpenCage::Geocoder.new(api_key: ENV['API_KEY'])
   CITY_KEY = "city"
   ROAD_KEY = "road"
 
