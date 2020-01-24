@@ -45,12 +45,42 @@ RSpec.describe 'room API', type: :request do
       #   end
       # end
   end
-   describe 'GET /rooms/roomlist/:lat&:lon&:range' do
-    context "URL exists" do
-      #get "api/v1/rooms/list?lat=42.00000&lon=0.0000&range=500"
+   describe 'GET /rooms/room?:lat&:lon&:range' do
+    context "URL Accepted" do
+
       it 'returns status code 200' do
-        get "/api/v1/rooms/list?lat=42.00000&lon=0.0000&range=500"
+        get "/api/v1/rooms?lat=42.00001&lon=0.0000&range=500"
         expect(response).to have_http_status(200)
+      end
+
+      it 'returns latitude, longitude and range' do
+        get "/api/v1/rooms?lat=42.0000001&lon=0.0000&range=500"
+
+        expect(request.params['lat'].to_f).to be_kind_of(Float)
+        expect(request.params['lon'].to_f).to be_kind_of(Float)
+        expect(request.params['range'].to_f).to be_kind_of(Float)
+      end
+      it 'returns latitude, longitude, range and price' do
+        get "/api/v1/rooms?lat=42.0000001&lon=0.0000&range=500&price=20"
+
+        expect(request.params['lat'].to_f).to be_kind_of(Float)
+        expect(request.params['lon'].to_f).to be_kind_of(Float)
+        expect(request.params['range'].to_f).to be_kind_of(Float)
+        expect(request.params['price'].to_f).to be_kind_of(Float)
+      end
+    end
+    context "URL Not Accepted" do
+      it 'returns status code 400 no params' do
+        get "/api/v1/rooms"
+        expect(response).to have_http_status(:bad_request)
+      end
+      it 'returns status code 400 Invalid param name' do
+        get "/api/v1/rooms?lot=42.0000001&lon=0.0000&range=500:"
+        expect(response).to have_http_status(:bad_request)
+      end
+      it 'returns status code 400 Invalid number of params' do
+        get "/api/v1/rooms?lat=42.0000001&lon=0.0000:"
+        expect(response).to have_http_status(:bad_request)
       end
     end
   end
