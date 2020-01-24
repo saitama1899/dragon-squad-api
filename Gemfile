@@ -57,8 +57,6 @@ group :development, :test do
   gem 'faker'
   # Use database cleaner to remove fake data
   gem 'database_cleaner'
-  # Use simplecov to see test code coverage
-  gem 'simplecov'
 end
 
 group :development do
