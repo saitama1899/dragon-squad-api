@@ -16,6 +16,14 @@ RSpec.describe 'room API', type: :request do
     it 'returns status code 200' do
       expect(response).to have_http_status(200)
     end
+    before { get '/api/v1/rooms'}
+      #It could be to_f or to_d
+      it 'returns rooms with price <= 1000' do
+        json.length.times do |i|
+        expect(json[i]['price'].to_d).to be_between(0.0, 1000.0).inclusive
+        #expect(json[0]['price'].to_d).to be <= 1000.0
+        end
+      end
   end
 
   let(:room_id) { rooms.first.id }
