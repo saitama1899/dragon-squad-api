@@ -1,7 +1,8 @@
 class Room < ApplicationRecord
-  validates_presence_of :title
-  validates_presence_of :description
-  validates_presence_of :price
-  validates_presence_of :lat
-  validates_presence_of :lng
+  has_many :photos, dependent: :destroy
+  validates_presence_of :title, length: { in: 6..30 }
+  validates_presence_of :description, length: { maximum: 300 }
+  validates_presence_of :price, numericality: true, greater_than: 0
+  validates_presence_of :lat, length:{ in: -90..90 }
+  validates_presence_of :lng, length:{ in: -90..90 }
 end
