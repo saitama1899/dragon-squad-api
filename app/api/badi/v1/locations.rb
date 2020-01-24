@@ -12,7 +12,6 @@ module Badi
           result = place.nil? || place.blank? ? {:error => "No results"}.to_json : LocationSearcher.call(place)
           present result
         end
-
       end
     end
   end
