@@ -2,7 +2,7 @@ require 'database_cleaner'
 # This cleans after each rails db:seeds
 DatabaseCleaner.clean_with(:truncation)
 
-20.times do
+25.times do
   Room.create!(
     title: Faker::Marketing.buzzwords,
     description: Faker::Lorem.paragraph,
