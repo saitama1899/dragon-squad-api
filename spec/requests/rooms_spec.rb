@@ -6,7 +6,7 @@ RSpec.describe 'room API', type: :request do
 
   # GET /rooms #######################
   describe 'GET /rooms' do
-    before { get '/api/v1/rooms' }
+    before { get '/api/v1/admin/rooms' }
 
     it 'returns all rooms' do
       expect(json).not_to be_empty
@@ -21,8 +21,8 @@ RSpec.describe 'room API', type: :request do
   let(:room_id) { rooms.first.id }
 
   # GET /rooms/:id ####################################
-  describe 'GET /rooms/:id' do
-    before { get "/api/v1/rooms/#{room_id}" }
+  describe 'GET /rooms/admin/:id' do
+    before { get "/api/v1/admin/rooms/#{room_id}" }
 
       context 'when the record exists' do
 
@@ -44,5 +44,14 @@ RSpec.describe 'room API', type: :request do
       #     expect(response).to have_http_status(404)
       #   end
       # end
+  end
+   describe 'GET /rooms/roomlist/:lat&:lon&:range' do
+    context "URL exists" do
+      #get "api/v1/rooms/list?lat=42.00000&lon=0.0000&range=500"
+      it 'returns status code 200' do
+        get "/api/v1/rooms/list?lat=42.00000&lon=0.0000&range=500"
+        expect(response).to have_http_status(200)
+      end
+    end
   end
 end
