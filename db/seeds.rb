@@ -2,7 +2,7 @@ require 'database_cleaner'
 # This cleans after each rails db:seeds
 DatabaseCleaner.clean_with(:truncation)
 
-10.times do
+20.times do
   Room.create!(
     title: Faker::Marketing.buzzwords,
     description: Faker::Lorem.paragraph,
@@ -15,9 +15,9 @@ end
 
 rooms_ids = Room.ids
 
-6.times do
+100.times do
     Photo.create!(
-        room_id: rooms_ids.sample, 
-        url: "http://placehold.it/#{Faker::Number.number(digits: 3)}x#{Faker::Number.number(digits: 3)}", 
+        room_id: rooms_ids.sample,
+        url: "http://placehold.it/#{Faker::Number.number(digits: 3)}x#{Faker::Number.number(digits: 3)}",
     )
 end
