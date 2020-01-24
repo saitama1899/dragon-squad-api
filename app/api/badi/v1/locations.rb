@@ -1,4 +1,3 @@
-include AbstractController::Rendering
 module Badi
   module V1
     class Locations < Grape::API
