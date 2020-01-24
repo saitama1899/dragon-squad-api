@@ -1,3 +1,4 @@
+include AbstractController::Rendering
 module Badi
   module V1
     class Locations < Grape::API
@@ -8,8 +9,11 @@ module Badi
       resource :locations do
         desc 'Return list of possible locations'
         get do
-          present LocationSearcher.call(params[:keyword])
+          place = params[:keyword]
+          result = place.nil? || place.blank? ? {:error => "No results"}.to_json : LocationSearcher.call(place)
+          present result
         end
+
       end
     end
   end
