@@ -36,13 +36,12 @@ RSpec.describe 'room API', type: :request do
         end
       end
 
-      # Handle errors soon
-      # context 'when the record does not exist' do
-      #   let(:room_id) { 100 }
+      context 'when the record does not exist' do
+        let(:room_id) { 100 }
 
-      #   it 'returns status code 404' do
-      #     expect(response).to have_http_status(404)
-      #   end
-      # end
+        it 'returns status code 404' do
+          expect(response).to have_http_status(404)
+        end
+      end
   end
 end
