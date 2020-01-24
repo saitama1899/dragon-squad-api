@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-URL = "/api/v1/rooms?price=1000"
+url = "/api/v1/rooms?price=1000"
 
 describe 'GET rooms', type: :request do
-  before { get URL }
+  before { get url }
   it 'should return a 200 status code' do
     expect(response).to have_http_status(200)
   end
