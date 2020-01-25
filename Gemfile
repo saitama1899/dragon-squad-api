@@ -30,6 +30,9 @@ gem 'grape_on_rails_routes'
 # OpenCage geocoding API
 gem 'opencage-geocoder'
 
+# Geocoder, Coordinates calculations
+gem 'geocoder'
+
 # Use listen to avoid polling for changes
 gem 'listen'
 

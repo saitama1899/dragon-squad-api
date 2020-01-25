@@ -4,19 +4,22 @@ RSpec.describe 'room API', type: :request do
 
   let!(:rooms) { create_list(:room, 15) }
 
-  # GET /rooms #######################
-  describe 'GET /rooms' do
+  # GET /admin/rooms #######################
+  describe 'GET /admin/rooms' do
     before { get '/api/v1/admin/rooms' }
+
+    it 'returns status code 200' do
+
+      expect(response).to have_http_status(200)
+    end
 
     it 'returns all rooms' do
       expect(json).not_to be_empty
       expect(json.size).to eq(15)
     end
 
-    it 'returns status code 200' do
-      expect(response).to have_http_status(200)
-    end
-    before { get '/api/v1/rooms'}
+
+    before { get '/api/v1/admin/rooms'}
       #It could be to_f or to_d
       it 'returns rooms with price <= 1000' do
         json.length.times do |i|
@@ -76,12 +79,13 @@ RSpec.describe 'room API', type: :request do
         expect(request.params['range'].to_f).to be_kind_of(Float)
         expect(request.params['price'].to_f).to be_kind_of(Float)
       end
-
+      let!(:room){create_list(:room,2,lat: 42.00301,lng:0.003)}
+      let!(:roomWrong){create_list(:room,2,lat: 43.00301,lng:0.003)}
       it 'returns a room list ' do
         get "/api/v1/rooms?lat=42.0000001&lon=0.0000&range=500&price=20"
-          expect(json).to_not be_empty
+        expect(json).to_not be_empty
+        expect(json.size).to eq(2)
       end
-
     end
 
     context "URL Not Accepted" do
@@ -100,6 +104,11 @@ RSpec.describe 'room API', type: :request do
         expect(response).to have_http_status(:bad_request)
       end
 
+      let!(:room){create_list(:room,2,lat: 43.00301,lng:0)}
+      it 'returns a void room list ' do
+        get "/api/v1/rooms?lat=42.0000001&lon=0.0000&range=500&price=20"
+        expect(json).to be_empty
+      end
     end
   end
 end
