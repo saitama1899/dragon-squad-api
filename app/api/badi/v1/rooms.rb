@@ -8,6 +8,10 @@ module Badi
       # With this prefix we could access to our API instead '/api'
 
       prefix :api
+
+      # namespace used for parents routes
+      namespace :admin do
+
       # Indicates rooms routes
       resource :rooms do
       # Description of our method and what we are expecting
@@ -18,15 +22,32 @@ module Badi
         present rooms, with: Badi::Entities::RoomIndex
       end
 
-      desc 'Return a specific room'
-      # route_param :id Allows us to define namespace to pick up a room thanks to its id
-      route_param :id do
-        get do
-          room = Room.find(params[:id])
-          present room, with: Badi::Entities::Room
+
+          desc 'Return a specific room'
+          # route_param :id Allows us to define namespace to pick up a room thanks to its id
+          route_param :id do
+            get do
+              room = Room.find(params[:id])
+              present room, with: Badi::Entities::Room
+            end
           end
         end
       end
+
+      resource :rooms do
+        desc 'Return list of rooms inside the boundaries'
+        params do
+          requires :lat, type: Float
+          requires :lon, type: Float
+          requires :range, type: Float
+          optional :price, type: Float
+        end
+        get  do
+
+
+        end
+      end
+
     end
   end
 end
