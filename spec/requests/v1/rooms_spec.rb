@@ -2,114 +2,68 @@ require 'rails_helper'
 
 describe Badi::V1::Rooms do
   let!(:rooms) { create_list(:room, 15) }
+  url = "/api/v1/rooms"
 
-
-  # GET /admin/rooms #######################
-  describe 'GET /admin/rooms' do
-    before { get '/api/v1/admin/rooms' }
-
-    it 'returns status code 200' do
-
-      expect(response).to have_http_status(200)
-    end
-
-    it 'returns all rooms' do
-      expect(json).not_to be_empty
-      expect(json.size).to eq(15)
-    end
-    
-    before { get '/api/v1/admin/rooms'}
-      #It could be to_f or to_d
-      it 'returns rooms with price <= 1000' do
-        json.length.times do |i|
-
-        expect(json[i]['price'].to_d).to be_between(0.0, 1000.0).inclusive
-      end
-    end
-
-  end
-
-  let(:room_id) { rooms.first.id }
-
-  # GET /rooms/:id ####################################
-  describe 'GET /rooms/admin/:id' do
-    before { get "/api/v1/admin/rooms/#{room_id}" }
-
-    context 'when the record exists' do
-
-      it 'returns the room' do
-        expect(json).not_to be_empty
-        expect(json['id']).to eq(room_id)
-      end
-
-      it 'returns status code 200' do
-        expect(response).to have_http_status(200)
-      end
-    end
-
-    context 'when the record does not exist' do
-      let(:room_id) { 100 }
-
-      it 'returns status code 500' do
-        expect(response).to have_http_status(500)
-      end
-    end
-
-  end
-  describe 'GET /rooms/room?:lat&:lon&:range' do
+  # GET /rooms?lat=x&lng=x&range=x
+  describe 'GET /rooms?lat=x&lng=x&range=x' do
+    # Good context
     context "URL Accepted" do
 
       it 'returns status code 200' do
-        get "/api/v1/rooms?lat=42.00001&lon=0.0000&range=500"
+        get "#{url}?lat=42.00001&lng=0.0000&range=500"
         expect(response).to have_http_status(200)
       end
 
-      it 'get  latitude, longitude and range' do
-        get "/api/v1/rooms?lat=42.0000001&lon=0.0000&range=500"
+      it 'get latitude, longitude and range' do
+        get "#{url}?lat=42.0000001&lng=0.0000&range=500"
 
         expect(request.params['lat'].to_f).to be_kind_of(Float)
-        expect(request.params['lon'].to_f).to be_kind_of(Float)
+        expect(request.params['lng'].to_f).to be_kind_of(Float)
         expect(request.params['range'].to_f).to be_kind_of(Float)
       end
 
       it 'get latitude, longitude, range and price price' do
-        get "/api/v1/rooms?lat=42.0000001&lon=0.0000&range=500&price=20"
+        get "#{url}?lat=42.0000001&lng=0.0000&range=500&price=20"
 
         expect(request.params['lat'].to_f).to be_kind_of(Float)
-        expect(request.params['lon'].to_f).to be_kind_of(Float)
+        expect(request.params['lng'].to_f).to be_kind_of(Float)
         expect(request.params['range'].to_f).to be_kind_of(Float)
         expect(request.params['price'].to_f).to be_kind_of(Float)
       end
-      let!(:room){create_list(:room,2,lat: 42.00301,lng:0.003)}
-      let!(:roomWrong){create_list(:room,2,lat: 43.00301,lng:0.003)}
-      it 'returns a room list ' do
-        get "/api/v1/rooms?lat=42.0000001&lon=0.0000&range=500&price=20"
+
+      let!(:room){ create_list(:room, 2, lat: 42.00301, lng: 0.003) }
+      let!(:wrong_room){ create_list(:room, 2, lat: 43.00301, lng: 0.003) }
+
+      it 'returns a room list' do
+        get "#{url}?lat=42.0000001&lng=0.0000&range=500&price=20"
         expect(json).to_not be_empty
         expect(json.size).to eq(2)
       end
     end
 
+    # Bad context
     context "URL Not Accepted" do
       it 'returns status code 400 no params' do
-        get "/api/v1/rooms"
+        get "#{url}"
         expect(response).to have_http_status(:bad_request)
       end
 
       it 'returns status code 400 Invalid param name' do
-        get "/api/v1/rooms?lot=42.0000001&lon=0.0000&range=500:"
+        get "#{url}?lot=42.0000001&lng=0.0000&range=500:"
         expect(response).to have_http_status(:bad_request)
       end
 
       it 'returns status code 400 Invalid number of params' do
-        get "/api/v1/rooms?lat=42.0000001&lon=0.0000:"
+        get "#{url}?lat=42.0000001&lng=0.0000:"
         expect(response).to have_http_status(:bad_request)
       end
 
-      let!(:room){create_list(:room,2,lat: 43.00301,lng:0)}
-      it 'returns a void room list ' do
-        get "/api/v1/rooms?lat=42.0000001&lon=0.0000&range=500&price=20"
+      let!(:room){ create_list(:room, 2, lat: 43.00301, lng: 0) }
+      it 'returns a void room list' do
+        get "#{url}?lat=42.0000001&lng=0.0000&range=500&price=20"
         expect(json).to be_empty
       end
+
     end
   end
 end

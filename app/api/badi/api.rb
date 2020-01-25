@@ -7,6 +7,7 @@ module Badi
     rescue_from :all
 
     mount Badi::Health
+    mount Badi::V1::AdminRooms
     mount Badi::V1::Rooms
     mount Badi::V1::Locations
   end
