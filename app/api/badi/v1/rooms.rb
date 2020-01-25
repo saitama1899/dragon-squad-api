@@ -8,6 +8,7 @@ module Badi
       # With this prefix we could access to our API instead '/api'
 
       prefix :api
+      # namespace used for parents routes
       namespace :admin do
         # Indicates rooms routes
         resource :rooms do
@@ -30,6 +31,7 @@ module Badi
           end
         end
       end
+
       resource :rooms do
         desc 'Return list of rooms inside the boundaries'
         params do
@@ -43,6 +45,7 @@ module Badi
 
         end
       end
+
     end
   end
 end
