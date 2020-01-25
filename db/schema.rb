@@ -10,20 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_23_123248) do
+ActiveRecord::Schema.define(version: 2020_01_24_111943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "photos", force: :cascade do |t|
+    t.string "url"
+    t.bigint "room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_photos_on_room_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "title"
-    t.string "description"
+    t.text "description"
     t.string "owner"
     t.decimal "price"
-    t.decimal "lat"
-    t.decimal "lng"
+    t.float "lat"
+    t.float "lng"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "photos", "rooms"
 end

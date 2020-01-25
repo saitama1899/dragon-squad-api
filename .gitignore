@@ -31,7 +31,17 @@
 yarn-debug.log*
 .yarn-integrity
 
-# Ignore Idea files
+# Idea files
 *.idea
-*/.idea/workspace.xml
-**/.idea/tasks.xml
+
+# Coverage files
+/coverage
+
+# Package lock file
+package-lock.json
+
+#Generator files
+*.generators
+
+# Orig files
+*.orig
