@@ -32,8 +32,8 @@ describe Badi::V1::Locations do
 
     before { get "/api/v1/locations?location=ba" }
 
-    it 'should return a 422 status code' do
-      expect(response).to have_http_status(422)
+    it 'should return a 400 status code' do
+      expect(response).to have_http_status(400)
     end
 
     it 'should return a text' do
@@ -42,24 +42,6 @@ describe Badi::V1::Locations do
 
     it 'should contain an error message' do
       expect(json["error"]) == "Incorrect params"
-    end
-
-  end
-
-  context 'Bad request' do
-
-    before { get "/api/v1/locations" }
-
-    it 'should return a 400 status code' do
-      expect(response).to have_http_status(:bad_request)
-    end
-
-    it 'should return a text' do
-      expect(json).not_to be_empty
-    end
-
-    it 'should contain an error message' do
-      expect(json["error"]) == "location is missing"
     end
 
   end
