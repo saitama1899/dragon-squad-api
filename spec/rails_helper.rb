@@ -2,9 +2,6 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'simplecov'
-SimpleCov.start
-
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
@@ -85,5 +82,9 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  # HTTP request tests would go into the spec/requests group.
+  # You may want your API code to go into app/api - you can match that layout under spec by adding the following in spec/rails_helper.rb.
+  config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\/api/
+  # Support methods includers
   config.include RequestSpecHelper
 end
