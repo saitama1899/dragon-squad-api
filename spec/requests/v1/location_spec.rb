@@ -3,8 +3,8 @@ require 'rails_helper'
 describe Badi::V1::Locations do
 
   context 'Get /locations from a search' do
-
-    before { get "/api/v1/locations?keyword=Consell de cent" }
+    url = "/api/v1/locations?location=" + Faker::Address.postcode
+    before { get url }
 
     it 'should return a 200 status code' do
       expect(response).to have_http_status(200)
@@ -28,9 +28,27 @@ describe Badi::V1::Locations do
 
   end
 
-  context 'Incorrect parameters' do
+  context 'Bad parameters' do
 
-    before { get "/api/v1/locations?keyword=" }
+    before { get "/api/v1/locations?location=ba" }
+
+    it 'should return a 422 status code' do
+      expect(response).to have_http_status(422)
+    end
+
+    it 'should return a text' do
+      expect(json).not_to be_empty
+    end
+
+    it 'should contain an error message' do
+      expect(json["error"]) == "Incorrect params"
+    end
+
+  end
+
+  context 'Bad request' do
+
+    before { get "/api/v1/locations" }
 
     it 'should return a 400 status code' do
       expect(response).to have_http_status(:bad_request)
@@ -41,7 +59,7 @@ describe Badi::V1::Locations do
     end
 
     it 'should contain an error message' do
-      expect(json["error"]) == "Incorrect params"
+      expect(json["error"]) == "location is missing"
     end
 
   end
