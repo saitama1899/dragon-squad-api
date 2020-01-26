@@ -42,3 +42,6 @@ package-lock.json
 
 #Generator files
 *.generators
+
+# Orig files
+*.orig

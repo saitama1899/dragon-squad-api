@@ -9,7 +9,8 @@ module Badi
         desc 'Return list of possible locations'
         get do
           place = params[:keyword]
-          result = place.nil? || place.blank? ? {:error => "No results"}.to_json : LocationSearcher.call(place)
+          result = place.nil? || place.blank? || place.length < 3 ?
+                       error!({ error: 'Incorrect params' }, 400) : LocationSearcher.call(place)
           present result
         end
       end
