@@ -4,13 +4,17 @@ describe Badi::V1::Rooms do
   let!(:rooms) { create_list(:room, 15) }
   url = "/api/v1/rooms"
 
-  # GET /rooms?lat=x&lng=x&range=x
   describe 'GET /rooms?lat=x&lng=x&range=x' do
     # Good context
     context "URL Accepted" do
 
       it 'returns status code 200' do
         get "#{url}?lat=42.00001&lng=0.0000&range=500"
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns status code 200' do
+        get "#{url}?lat=42.00001&lng=0.0000&range=50.00&price=20.00"
         expect(response).to have_http_status(200)
       end
 
@@ -46,6 +50,13 @@ describe Badi::V1::Rooms do
       it 'returns status code 400 no params' do
         get "#{url}"
         expect(response).to have_http_status(:bad_request)
+      end
+
+      it 'should contain an error message' do
+        get "#{url}?lat=AA&lng=bb&range=-1&price=-2"
+        expect(json.first["messages"].first.to_s) == "is required"
+        expect(json.first["messages"].first.to_s) == "is invalid"
+        expect(json.first["messages"].last.to_s) == "cannot be blank"
       end
 
       it 'returns status code 400 Invalid param name' do
