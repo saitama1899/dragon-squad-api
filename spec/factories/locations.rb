@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :location do
-    name { "MyString" }
-    lat { "9.99" }
-    lng { "9.99" }
+    name { Faker::Adress.city }
+    lat { Faker::Number.normal(mean: 40.4, standard_deviation: 0.25) }
+    lng { Faker::Number.normal(mean: -3.7, standard_deviation: 0.25) }
   end
 end

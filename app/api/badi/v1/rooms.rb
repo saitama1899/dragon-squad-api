@@ -29,7 +29,10 @@ module Badi
 
           Geocoder.configure(:units => :km)
           boundaries = Geocoder::Calculations.bounding_box([lat, lng], range/1000)
-          rooms = Room.all.where({ lat: boundaries[0]..boundaries[2], lng: boundaries[1]..boundaries[3]})
+          lat_range = (boundaries[0])..boundaries[2]
+          lng_range = (boundaries[1])..boundaries[3]
+          rooms = Room.joins(:locations).where(locations: {lat: lat_range, lng: lng_range})
+          # rooms = Room.all.where({ lat: boundaries[0]..boundaries[2], lng: boundaries[1]..boundaries[3]})
           present rooms, with: Badi::Entities::RoomIndex
         end
       end
