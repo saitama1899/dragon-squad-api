@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_24_111943) do
+ActiveRecord::Schema.define(version: 2020_01_27_192856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.text "name"
+    t.float "lat"
+    t.float "lng"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_locations_on_name", unique: true
+  end
 
   create_table "photos", force: :cascade do |t|
     t.string "url"
@@ -28,11 +37,12 @@ ActiveRecord::Schema.define(version: 2020_01_24_111943) do
     t.text "description"
     t.string "owner"
     t.decimal "price"
-    t.float "lat"
-    t.float "lng"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "location_id"
+    t.index ["location_id"], name: "index_rooms_on_location_id"
   end
 
   add_foreign_key "photos", "rooms"
+  add_foreign_key "rooms", "locations"
 end

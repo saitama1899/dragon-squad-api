@@ -1,8 +1,22 @@
 require 'database_cleaner'
+require 'opencage/geocoder'
 # This cleans after each rails db:seed
 DatabaseCleaner.clean_with(:truncation)
 
 include SeedsHelper
+
+100.times do
+  lat = Faker::Number.normal(mean: 40.4, standard_deviation: 0.25)
+  lng = Faker::Number.normal(mean: -3.7, standard_deviation: 0.25)
+
+  Location.find_or_create_by(name: LocationSearcher.reverse_geocode(lat, lng).address) do |location|
+    location.lat = lat
+    location.lng = lng
+  end
+
+end
+
+locations_ids = Location.ids
 
 500.times do
   Room.create!(
@@ -10,8 +24,7 @@ include SeedsHelper
     description: Faker::Lorem.paragraph,
     price: Faker::Number.number(digits: 3),
     owner: Faker::Games::Pokemon.name,
-    lat: Faker::Number.normal(mean: 41, standard_deviation: 0.25),
-    lng: Faker::Number.normal(mean: 2, standard_deviation: 0.25)
+    location_id: locations_ids.sample
   )
 end
 
