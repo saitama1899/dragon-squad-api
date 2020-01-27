@@ -9,13 +9,15 @@ module Badi
 
       resource :locations do
         desc 'Return list of possible locations'
-
+        params do
+          requires :location, type: String
+        end
         get do
-          place = params[:location]
-          if place.nil? || place.blank? || place.length < 3
+          location = params[:location]
+          if location.nil? || location.blank? || location.length < 3
             incorrect_params
           end
-          present LocationSearcher.call(place)
+          present LocationSearcher.call(location)
         end
       end
     end
