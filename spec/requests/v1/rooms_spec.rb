@@ -45,7 +45,7 @@ describe Badi::V1::Rooms do
     context "URL Not Accepted" do
       it 'returns status code 400 no params' do
         get "#{url}"
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(400)
       end
 
       it 'returns status code 400 Invalid param name' do
