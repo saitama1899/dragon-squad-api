@@ -13,8 +13,8 @@ module Badi
         end
 
         get do
-          place = params[:location]
-          present LocationSearcher.call(place)
+          location = params[:location]
+          present LocationSearcher.call(location)
         end
       end
     end
