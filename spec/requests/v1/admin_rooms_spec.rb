@@ -8,7 +8,6 @@ describe Badi::V1::AdminRooms do
     before { get '/api/v1/admin/rooms' }
 
     it 'returns status code 200' do
-
       expect(response).to have_http_status(200)
     end
 
