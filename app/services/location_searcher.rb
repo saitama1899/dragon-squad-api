@@ -11,9 +11,7 @@ class LocationSearcher
 
     results = []
     possible_locations.each do |item|
-      if item.components.key?(CITY_KEY) && item.components.key?(ROAD_KEY)
-        results << { coordinates: item.coordinates, address: item.address }
-      end
+      results << { coordinates: item.coordinates, address: item.address }
     end
 
     return results

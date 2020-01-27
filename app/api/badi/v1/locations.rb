@@ -1,3 +1,5 @@
+include ApplicationHelper
+
 module Badi
   module V1
     class Locations < Grape::API
@@ -7,8 +9,13 @@ module Badi
 
       resource :locations do
         desc 'Return list of possible locations'
+
         get do
-          present LocationSearcher.call(params[:keyword])
+          place = params[:location]
+          if place.nil? || place.blank? || place.length < 3
+            incorrect_params
+          end
+          present LocationSearcher.call(place)
         end
       end
     end
