@@ -2,9 +2,12 @@ require 'rails_helper'
 
 describe Badi::V1::Locations do
 
+  url = "/api/v1/locations"
+
   context 'Get /locations from a search' do
-    url = "/api/v1/locations?location=" + Faker::Address.postcode
-    before { get url }
+
+    place = Faker::Address.postcode
+    before { get "#{url}?location=#{place}" }
 
     it 'should return a 200 status code' do
       expect(response).to have_http_status(200)
@@ -29,8 +32,7 @@ describe Badi::V1::Locations do
   end
 
   context 'Bad parameters' do
-
-    before { get "/api/v1/locations?location=ba" }
+    before { get "#{url}?location=ba" }
 
     it 'should return a 400 status code' do
       expect(response).to have_http_status(400)
@@ -52,7 +54,7 @@ describe Badi::V1::Locations do
 
   context 'No parameters' do
 
-    before { get "/api/v1/locations" }
+    before { get url }
 
     it 'should return a 400 status code' do
       expect(response).to have_http_status(400)

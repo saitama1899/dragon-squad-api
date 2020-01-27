@@ -1,3 +1,5 @@
+include ApplicationHelper
+
 module Badi
   module V1
     class Rooms < Grape::API
@@ -6,14 +8,18 @@ module Badi
 
       prefix :api
 
-      # /rooms?lat=x&lng=x&range=x
       resource :rooms do
         desc 'Returns a list of rooms that are within the boundaries'
         params do
-          requires :lat, type: Float
-          requires :lng, type: Float
-          requires :range, type: Float
-          optional :price, type: Float
+          with(type: Float, allow_blank: { value: false, message: 'cannot be blank' }) do
+            requires :lat, :lng, :range
+          end
+
+          with(regexp: /^\d+\.?\d{0,2}$/) do
+            requires :range
+            optional :price
+          end
+
         end
         get do
           lat = params[:lat]
