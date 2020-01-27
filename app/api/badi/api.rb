@@ -3,6 +3,10 @@ module Badi
     format :json
     content_type :json, 'application/json; charset=utf-8'
 
+    rescue_from Grape::Exceptions::ValidationErrors do |error_message|
+      error!(error_message, 400)
+    end
+
     # Error handling
     rescue_from :all
 
