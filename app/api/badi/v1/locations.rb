@@ -19,18 +19,17 @@ module Badi
           country = params[:countrycode]
           places = LocationSearcher.forward_search(location, country)
 
+          results = []
+
           places.each do |item|
             db_rooms = RoomSearcher.call(item[:coordinates].first, item[:coordinates].last)
-
-            total_rooms = 0
             if db_rooms.present?
-              total_rooms = db_rooms.first.size
+              item[:total_rooms] = db_rooms.first.size
               item[:rooms] = db_rooms.first
+              results << item
             end
-            item[:total_rooms] = total_rooms
-
           end
-          present places
+          present results
         end
       end
     end
