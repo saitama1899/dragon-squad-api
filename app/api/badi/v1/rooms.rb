@@ -34,8 +34,14 @@ module Badi
           rooms = Room.joins(:location).where(locations: {lat: lat_range, lng: lng_range})
           present rooms, with: Badi::Entities::RoomIndex
         end
+        desc 'Returns a specific room'
+        route_param :id do
+          get do
+            room = Room.find(params[:id])
+            present room, with: Badi::Entities::Room
+          end
+        end
       end
-
     end
   end
 end
