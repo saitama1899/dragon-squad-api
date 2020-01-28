@@ -10,12 +10,14 @@ module Badi
 
         min_three_characters = /^.{3,}$/ # => "bar"
         params do
-          requires :location, type: String, regexp: min_three_characters, allow_blank: { value: false, message: 'cannot be blank' }, message: 'is required'
+          requires :location, type: String, regexp: /^.{3,}$/, allow_blank: { value: false, message: 'cannot be blank' }, message: 'is required'
+          optional :countrycode
         end
 
         get do
           location = params[:location]
-          present LocationSearcher.call(location)
+          country = params[:countrycode]
+          present LocationSearcher.call(location, country)
         end
       end
     end
