@@ -10,11 +10,13 @@ module Badi
 
         params do
           requires :location, type: String, regexp: /^.{3,}$/, allow_blank: { value: false, message: 'cannot be blank' }, message: 'is required'
+          optional :countrycode
         end
 
         get do
           location = params[:location]
-          present LocationSearcher.call(location)
+          country = params[:countrycode]
+          present LocationSearcher.call(location, country)
         end
       end
     end

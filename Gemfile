@@ -28,7 +28,7 @@ gem 'grape-entity'
 gem 'grape_on_rails_routes'
 
 # OpenCage geocoding API
-gem 'opencage-geocoder'
+gem 'opencage-geocoder', '~> 2.1', '>= 2.1.1'
 
 # Geocoder, Coordinates calculations
 gem 'geocoder'
