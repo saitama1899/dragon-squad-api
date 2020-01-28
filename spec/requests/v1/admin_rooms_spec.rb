@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe Badi::V1::AdminRooms do
-  let!(:rooms) { create_list(:room, 15) }
+  let!(:location){create(:location)}
+  let!(:rooms) { create_list(:room, 15,location_id: location.id) }
 
   # GET /admin/rooms
   describe 'GET /admin/rooms' do

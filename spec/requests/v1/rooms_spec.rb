@@ -44,7 +44,6 @@ describe Badi::V1::Rooms do
       it 'returns a room list' do
         get "#{url}?lat=42.0000001&lng=0.0000&range=500&price=20"
         expect(json).to_not be_empty
-        print json
         expect(json.size).to eq(2)
       end
     end
