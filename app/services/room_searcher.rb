@@ -12,9 +12,9 @@ class RoomSearcher
 
     rooms = []
     if result.present?
-      rooms << result
+      rooms << Badi::Entities::RoomIndex.represent(result)
     end
 
-    return rooms # with: Badi::Entities:RoomsIndex
+    return rooms
   end
 end
