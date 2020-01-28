@@ -17,7 +17,7 @@ module Badi
         get do
           location = params[:location]
           country = params[:countrycode]
-          present LocationSearcher.call(location, country)
+          present LocationSearcher.forward_search(location, country)
         end
       end
     end
