@@ -280,7 +280,7 @@ DEPENDENCIES
   grape_on_rails_routes
   jbuilder (~> 2.7)
   listen
-  opencage-geocoder
+  opencage-geocoder (~> 2.1, >= 2.1.1)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.1)
