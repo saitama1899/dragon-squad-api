@@ -10,9 +10,9 @@ class RoomSearcher
     lng_range = (boundaries[1])..boundaries[3]
     result = Room.joins(:location).where(locations: {lat: lat_range, lng: lng_range}).limit(5)
 
-    rooms = []
+    rooms=[]
     if result.present?
-      rooms << Badi::Entities::RoomIndex.represent(result)
+      rooms = Badi::Entities::RoomIndex.represent(result)
     end
 
     return rooms
