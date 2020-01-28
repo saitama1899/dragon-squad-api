@@ -15,7 +15,8 @@ module Badi
             requires :lat, :lng, :range
           end
 
-          with(regexp: /^\d+\.?\d{0,2}$/) do
+          two_decimals = /^\d+\.?\d{0,2}$/ # => 99.00
+          with(regexp: two_decimals) do
             requires :range
             optional :price
           end
