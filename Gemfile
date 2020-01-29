@@ -65,8 +65,6 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.0'
   # Use shoulda for one line simple test
   gem 'shoulda-matchers', '~> 3.1'
-
-
   # Use simplecov to see test code coverage
   gem 'simplecov'
 end
