@@ -6,9 +6,14 @@ module Badi
     rescue_from Grape::Exceptions::ValidationErrors do |error_message|
       error!(error_message, 400)
     end
+    # Error handle for JWT decode error
+    #rescue_from JWT::DecodeError do |error_message|
+      #error!(error_message,:unauthorized)
+    #end
 
     # Error handling
     rescue_from :all
+
 
     mount Badi::Health
     mount Badi::V1::AdminRooms
