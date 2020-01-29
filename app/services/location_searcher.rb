@@ -4,7 +4,7 @@ require 'json'
 class LocationSearcher
   API_GEOCODE = OpenCage::Geocoder.new(api_key: ENV['API_KEY'])
 
-  def self.call(location, country)
+  def self.forward_search(location, country)
     possible_locations = API_GEOCODE.geocode(location, countrycode: country, language: 'es')
 
     results = []
