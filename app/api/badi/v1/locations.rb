@@ -24,7 +24,7 @@ module Badi
           places.each do |item|
             db_rooms = RoomSearcher.call(item[:coordinates].first, item[:coordinates].last)
             if db_rooms.present?
-              item[:total_rooms] = db_rooms.first.size
+              item[:total_rooms] = db_rooms.size
               item[:rooms] = db_rooms.first
               results << item
             end
