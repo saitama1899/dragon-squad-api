@@ -19,5 +19,7 @@ module Badi
     mount Badi::V1::AdminRooms
     mount Badi::V1::Rooms
     mount Badi::V1::Locations
+    mount Badi::V1::Users
+
   end
 end
