@@ -46,6 +46,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Sharing configuration variables across environments
 gem 'dotenv-rails', groups: [:development, :test]
 
+# Token Authentication
+gem 'jwt'
+# Password encryptation
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
