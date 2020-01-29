@@ -1,7 +1,7 @@
-#require 'database_cleaner'
+require 'database_cleaner'
 require 'opencage/geocoder'
 # This cleans after each rails db:seed
-#DatabaseCleaner.clean_with(:truncation)
+DatabaseCleaner.clean_with(:truncation)
 
 include SeedsHelper
 
