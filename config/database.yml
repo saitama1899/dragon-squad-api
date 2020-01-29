@@ -13,3 +13,11 @@ test:
   pool: 5
   username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASS'] %>
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: dragon_squad_production
+  pool: 5
+  username: postgres
+  password: dragonsquad
