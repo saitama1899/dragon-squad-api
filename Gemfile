@@ -49,6 +49,13 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dotenv-rails', groups: [:development, :test]
 
 
+group :development, :test,:production do
+# Use faker to generate fake data
+  gem 'faker'
+  # Use database cleaner to remove fake data
+  gem 'database_cleaner'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -58,10 +65,6 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.0'
   # Use shoulda for one line simple test
   gem 'shoulda-matchers', '~> 3.1'
-  # Use faker to generate fake data
-  gem 'faker'
-  # Use database cleaner to remove fake data
-  gem 'database_cleaner'
   # Use simplecov to see test code coverage
   gem 'simplecov'
 end
