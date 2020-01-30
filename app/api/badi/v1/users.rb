@@ -1,8 +1,8 @@
 module Badi
   module V1
     class Users < Grape::API
-      before_action :authorize_request, except: :create
-      before_action :find_user, except: %i[create index]
+      # before_action :authorize_request, except: :create
+      # before_action :find_user, except: %i[create index]
       version 'v1', using: :path
       format :json
 
