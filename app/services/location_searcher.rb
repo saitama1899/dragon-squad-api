@@ -4,12 +4,12 @@ require 'json'
 class LocationSearcher
   API_GEOCODE = OpenCage::Geocoder.new(api_key: ENV['API_KEY'])
 
-  def self.forward_search(location, country)
-    possible_locations = API_GEOCODE.geocode(location, countrycode: country, language: 'es')
+  def self.find_place(location)
+    possible_locations = Location.where("name ILIKE ?", "%#{location}%")
 
     results = []
     possible_locations.each do |item|
-      results << { coordinates: item.coordinates, address: item.address }
+      results << {id: item.id, lat: item.lat, lng: item.lng, name: item.name }
     end
 
     return results

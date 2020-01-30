@@ -15,25 +15,19 @@ module Badi
         end
 
         get do
-          location = params[:location]
-          country = params[:countrycode]
+          param_location = params[:location]
 
-          locations = Location.where("name ILIKE ?", "%#{location}%")
+          locations = LocationSearcher.find_place(param_location)
 
-          rooms = Room.joins(:location).where("locations.name LIKE ?", "%#{location}%")
-
-          # places = LocationSearcher.forward_search(location, country)
-
-          # results = []
-
-          # places.each do |item|
-          #   db_rooms = RoomSearcher.call(item[:coordinates].first, item[:coordinates].last)
-          #   if db_rooms.present?
-          #     item[:total_rooms] = db_rooms.size
-          #     item[:rooms] = db_rooms.first
-          #     results << item
-          #   end
-          # end
+          results = []
+          locations.each do |item|
+            db_rooms = RoomSearcher.call(item[:id])
+             if db_rooms.present?
+               item[:total_rooms] = db_rooms.size
+               item[:rooms] = db_rooms
+               results << item
+             end
+          end
           present locations
         end
       end
