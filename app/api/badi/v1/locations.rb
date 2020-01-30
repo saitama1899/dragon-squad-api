@@ -17,19 +17,24 @@ module Badi
         get do
           location = params[:location]
           country = params[:countrycode]
-          places = LocationSearcher.forward_search(location, country)
 
-          results = []
+          locations = Location.where("name ILIKE ?", "%#{location}%")
 
-          places.each do |item|
-            db_rooms = RoomSearcher.call(item[:coordinates].first, item[:coordinates].last)
-            if db_rooms.present?
-              item[:total_rooms] = db_rooms.size
-              item[:rooms] = db_rooms.first
-              results << item
-            end
-          end
-          present results
+          rooms = Room.joins(:location).where("locations.name LIKE ?", "%#{location}%")
+
+          # places = LocationSearcher.forward_search(location, country)
+
+          # results = []
+
+          # places.each do |item|
+          #   db_rooms = RoomSearcher.call(item[:coordinates].first, item[:coordinates].last)
+          #   if db_rooms.present?
+          #     item[:total_rooms] = db_rooms.size
+          #     item[:rooms] = db_rooms.first
+          #     results << item
+          #   end
+          # end
+          present locations
         end
       end
     end
