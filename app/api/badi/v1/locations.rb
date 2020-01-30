@@ -20,12 +20,12 @@ module Badi
           locations = LocationSearcher.find_place(param_location)
 
           results = []
-          locations.each do |item|
-            db_rooms = RoomSearcher.call(item[:id])
+          locations.each do |location|
+            db_rooms = RoomSearcher.search_rooms_by_location_id(location[:id])
              if db_rooms.present?
-               item[:total_rooms] = db_rooms.size
-               item[:rooms] = db_rooms.first(5) # return only the first five
-               results << item
+               location[:total_rooms] = db_rooms.size
+               location[:rooms] = db_rooms.first(5) # return only the first five
+               results << location
              end
           end
           present locations
