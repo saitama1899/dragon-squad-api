@@ -11,7 +11,7 @@ module Badi
       resource :rooms do
         desc 'Returns a list of rooms that are within the boundaries'
         params do
-          with(type: Float, allow_blank: { value: false, message: 'cannot be blank' }) do
+          with(type: Float, allow_blank: {value: false, message: 'cannot be blank'}) do
             requires :lat, :lng, :range
           end
 
@@ -27,12 +27,9 @@ module Badi
           lng = params[:lng]
           range = params[:range]
 
-          Geocoder.configure(:units => :km)
-          boundaries = Geocoder::Calculations.bounding_box([lat, lng], range/1000)
-          lat_range = (boundaries[0])..boundaries[2]
-          lng_range = (boundaries[1])..boundaries[3]
-          rooms = Room.joins(:location).where(locations: {lat: lat_range, lng: lng_range})
-          present rooms, with: Badi::Entities::RoomIndex
+          rooms = RoomSearcher.call(lat, lng, range)
+
+          present rooms
         end
       end
 
