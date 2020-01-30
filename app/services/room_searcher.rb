@@ -4,7 +4,7 @@ require 'json'
 class RoomSearcher
 
   def self.call(location_id)
-    result = Room.joins(:location).where(locations: {id: location_id}).limit(5)
+    result = Room.joins(:location).where(locations: {id: location_id})
 
     rooms = []
     if result.present?
