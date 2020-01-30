@@ -4,6 +4,7 @@ describe Badi::V1::AdminRooms do
   let!(:location){create(:location)}
   let!(:rooms) { create_list(:room, 15,location_id: location.id) }
 
+
   # GET /admin/rooms
   describe 'GET /admin/rooms' do
     before { get '/api/v1/admin/rooms' }

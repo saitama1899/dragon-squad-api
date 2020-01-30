@@ -3,17 +3,14 @@ require 'json'
 
 class RoomSearcher
 
-URL = "/api/v1/rooms"
+  def self.call(location_id)
+    result = Room.joins(:location).where(locations: {id: location_id}).limit(5)
 
-    def self.call(price)
-#        possible_rooms = { get URL }
-#        results = []
-#        possible_rooms.each do |item|
-#            if (item.price =< price)
-#                results << { item }
-#            end
-#        end
-#    return results
-    return true
+    rooms = []
+    if result.present?
+      rooms = Badi::Entities::RoomIndex.represent(result)
     end
+
+    return rooms
+  end
 end
