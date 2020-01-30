@@ -31,8 +31,14 @@ module Badi
 
           present rooms
         end
+        desc 'Returns a specific room'
+        route_param :id do
+          get do
+            room = Room.find(params[:id])
+            present room, with: Badi::Entities::Room
+          end
+        end
       end
-
     end
   end
 end

@@ -50,6 +50,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Sharing configuration variables across environments
 gem 'dotenv-rails', groups: [:development, :test]
 
+# Token Authentication
+gem 'jwt'
+# Password encryptation
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test,:production do
 # Use faker to generate fake data
