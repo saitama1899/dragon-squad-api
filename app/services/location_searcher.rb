@@ -5,8 +5,7 @@ class LocationSearcher
   API_GEOCODE = OpenCage::Geocoder.new(api_key: ENV['API_KEY'])
 
   def self.find_place(location)
-    places = Badi::Entities::Location.represent(Location.where("name ILIKE ?", "%#{location}%")).first(5)
-    places.to_json
+    Location.where("name ILIKE ?", "%#{location}%").first(5)
   end
 
   def self.reverse_geocode(lat, lng)
