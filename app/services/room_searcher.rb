@@ -3,14 +3,7 @@ require 'json'
 
 class RoomSearcher
 
-  def self.call(location_id)
-    result = Room.joins(:location).where(locations: {id: location_id})
-
-    rooms = []
-    if result.present?
-      rooms = Badi::Entities::RoomIndex.represent(result)
-    end
-
-    return rooms
+  def self.find_rooms_by_location_id(location_id)
+    Badi::Entities::RoomIndex.represent(Room.joins(:location).where(locations: {id: location_id}))
   end
 end
