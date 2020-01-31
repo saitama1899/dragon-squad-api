@@ -1,7 +1,7 @@
 module Badi
   module Entities
     class RoomIndex < Grape::Entity
-      expose :id, :title, :description, :price, :owner, :location_id
+      expose : :title, :description, :price, :owner, :location_id
       expose :first_photo, using: Badi::Entities::Photo do |rooms, options|
         rooms.photos.first
       end
