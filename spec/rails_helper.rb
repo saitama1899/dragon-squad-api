@@ -87,4 +87,7 @@ RSpec.configure do |config|
   config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\/api/
   # Support methods includers
   config.include RequestSpecHelper
+
+  require 'webmock/rspec'
+  WebMock.disable_net_connect!(allow_localhost: true)
 end
