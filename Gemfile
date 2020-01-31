@@ -73,6 +73,9 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   # Use simplecov to see test code coverage
   gem 'simplecov'
+
+  gem 'webmock', '~> 3.8'
+  gem 'capybara'
 end
 
 group :development do
