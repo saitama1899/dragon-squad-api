@@ -3,7 +3,7 @@ require 'json'
 
 class RoomSearcher
   def self.search_rooms_by_location_id(location_id)
-    Room.joins(:location).where(locations: {id: location_id})
+    Room.joins(:location).where(locations: {id: location_id}).count
   end
 
   def self.search_rooms_by_coordinates(lat, lng, range = 1000)

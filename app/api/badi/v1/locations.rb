@@ -24,7 +24,7 @@ module Badi
           locations.each do |location_item|
             db_rooms = RoomSearcher.search_rooms_by_location_id(location_item['id'])
             if db_rooms.present?
-              location_item[:total_rooms] = db_rooms.size
+              location_item[:total_rooms] = db_rooms
               results << location_item
             end
             present results
