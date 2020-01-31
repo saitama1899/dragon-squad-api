@@ -11,7 +11,7 @@ describe Badi::V1::Locations do
       it "should return status ok" do
         expect(response).to have_http_status(200)
       end
-      let!(:location) { create(:location, name:'madrid')}
+      # let!(:location) { create(:location, name:'madrid')}
       it 'should return a text' do
         expect(json).to_not be_empty
       end
