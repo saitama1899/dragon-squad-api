@@ -5,7 +5,7 @@ class LocationSearcher
   API_GEOCODE = OpenCage::Geocoder.new(api_key: ENV['API_KEY'])
 
   def self.find_place(location)
-    possible_locations = Location.where("name ILIKE ?", "%#{location}%")
+    possible_locations = Location.where("name ILIKE ?", "%#{location}%").first(5)
 
     results = []
     possible_locations.each do |item|
