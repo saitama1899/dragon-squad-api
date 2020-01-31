@@ -4,6 +4,7 @@ describe Badi::V1::Locations do
 
   url = "/api/v1/locations"
 
+  let!(:location) { create(:location, name:'madrid')}
   describe "Right params" do
     context "Location with rooms" do
       before { get "#{url}?location=mad" }
@@ -11,12 +12,18 @@ describe Badi::V1::Locations do
       it "should return status ok" do
         expect(response).to have_http_status(200)
       end
-      # let!(:location) { create(:location, name:'madrid')}
+
       it 'should return a text' do
         expect(json).to_not be_empty
       end
 
-      # test params en json
+      it 'should contain some keys' do
+        expect(json.first["id"]).to be_a(Integer)
+        expect(json.first["lat"]).to be_a(Float)
+        expect(json.first["lng"]).to be_a(Float)
+        expect(json.first["name"]).to be_a(String)
+        expect(json.first["total_rooms"]).to be_a(Integer)
+      end
 
     end
   end
