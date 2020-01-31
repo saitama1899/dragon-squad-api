@@ -21,14 +21,13 @@ module Badi
           locations = JSON.parse(locations)
 
           results = []
-          locations.each do |item|
-            db_rooms = RoomSearcher.search_rooms_by_location_id(item['id'])
+          locations.each do |location_item|
+            db_rooms = RoomSearcher.search_rooms_by_location_id(location_item['id'])
             if db_rooms.present?
-              item[:total_rooms] = db_rooms.size
-              item[:rooms] = db_rooms.first(5) # return only the first five
-              results << item
+              location_item[:total_rooms] = db_rooms.size
+              results << location_item
             end
-            present locations
+            present results
           end
         end
       end
