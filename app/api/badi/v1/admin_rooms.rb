@@ -12,7 +12,7 @@ module Badi
           desc 'Returns a list of rooms'
           get do
             rooms = Room.all
-            present rooms, with: Badi::Entities::RoomIndex
+            present rooms, with: Badi::Entities::Room
           end
 
           desc 'Returns a specific room'
