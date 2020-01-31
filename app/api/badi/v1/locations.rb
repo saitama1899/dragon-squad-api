@@ -18,17 +18,18 @@ module Badi
           param_location = params[:location]
 
           locations = LocationSearcher.find_place(param_location)
+          locations = JSON.parse(locations)
 
           results = []
-          locations.each do |location|
-            db_rooms = RoomSearcher.search_rooms_by_location_id(location[:id])
-             if db_rooms.present?
-               location[:total_rooms] = db_rooms.size
-               location[:rooms] = db_rooms.first(5) # return only the first five
-               results << location
-             end
+          locations.each do |item|
+            db_rooms = RoomSearcher.search_rooms_by_location_id(item['id'])
+            if db_rooms.present?
+              item[:total_rooms] = db_rooms.size
+              item[:rooms] = db_rooms.first(5) # return only the first five
+              results << item
+            end
+            present locations
           end
-          present locations
         end
       end
     end
