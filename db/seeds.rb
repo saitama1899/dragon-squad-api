@@ -12,8 +12,8 @@ include SeedsHelper
   Location.find_or_create_by(name: LocationSearcher.reverse_geocode(lat, lng).address) do |location|
     location.lat = lat
     location.lng = lng
+    location.total_rooms = 0
   end
-
 end
 
 locations_ids = Location.ids
@@ -31,7 +31,9 @@ end
 # Temporally way to delete mock locations without room (not the most efficient)
 Location.all.each do |location|
   db_rooms = RoomSearcher.search_rooms_by_location_id(location[:id])
-    if !db_rooms.present?
+    if db_rooms.present?
+      location.total_rooms += 1
+    else
       Location.where(id: location.id).destroy_all
     end
 end
