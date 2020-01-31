@@ -19,30 +19,22 @@ end
 locations_ids = Location.ids
 
 500.times do
+  location_id = locations_ids.sample
   Room.create!(
-    title: Faker::Quotes::Shakespeare.hamlet_quote,
-    description: Faker::Lorem.paragraph,
-    price: Faker::Number.number(digits: 3),
-    owner: Faker::Games::Pokemon.name,
-    location_id: locations_ids.sample
+      title: Faker::Quotes::Shakespeare.hamlet_quote,
+      description: Faker::Lorem.paragraph,
+      price: Faker::Number.number(digits: 3),
+      owner: Faker::Games::Pokemon.name,
+      location_id: location_id
   )
-end
-
-# Temporally way to delete mock locations without room (not the most efficient)
-Location.all.each do |location|
-  db_rooms = RoomSearcher.search_rooms_by_location_id(location[:id])
-    if db_rooms.present?
-      location.total_rooms += 1
-    else
-      Location.where(id: location.id).destroy_all
-    end
+  Location.find(location_id).total_rooms += 1
 end
 
 rooms_ids = Room.ids
 
 2000.times do
   Photo.create!(
-    room_id: rooms_ids.sample,
-    url: "http://placehold.it/#{width}x#{height}",
-  )
+      room_id: rooms_ids.sample,
+      url: "http://placehold.it/#%7Bwidth%7Dx#%7Bheight%7D",
+      )
 end

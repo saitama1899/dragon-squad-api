@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_200033) do
     t.float "lng"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "total_rooms"
+    t.integer "total_rooms", default: 0
     t.index ["name"], name: "index_locations_on_name", unique: true
   end
 
