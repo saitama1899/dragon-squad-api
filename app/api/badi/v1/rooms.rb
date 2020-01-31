@@ -27,7 +27,7 @@ module Badi
           lng = params[:lng]
           range = params[:range]
 
-          rooms = RoomSearcher.find_rooms_by_location_id(lat, lng, range)
+          rooms = RoomSearcher.search_rooms_by_coordinates(lat, lng, range)
 
           present rooms
         end

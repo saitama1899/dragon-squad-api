@@ -1,6 +1,6 @@
 require 'database_cleaner'
 require 'opencage/geocoder'
-# This cleans after each rails db:seed
+# This cleans after each rails db:seed (we need this on develop process)
 DatabaseCleaner.clean_with(:truncation)
 
 include SeedsHelper
@@ -26,6 +26,14 @@ locations_ids = Location.ids
     owner: Faker::Games::Pokemon.name,
     location_id: locations_ids.sample
   )
+end
+
+# Temporally way to delete mock locations without room (not the most efficient)
+Location.all.each do |location|
+  db_rooms = RoomSearcher.search_rooms_by_location_id(location[:id])
+    if !db_rooms.present?
+      Location.where(id: location.id).destroy_all
+    end
 end
 
 rooms_ids = Room.ids

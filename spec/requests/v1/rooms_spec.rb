@@ -47,15 +47,9 @@ describe Badi::V1::Rooms do
         expect(request.params['range'].to_f).to be_kind_of(Float)
       end
 
-      it 'get latitude, longitude, range and price price' do
-        get "#{url}?lat=42.0000001&lng=0.0000&range=500&price=20"
+      let!(:location) { create(:location, lat: 42.00301, lng: 0.003)}
 
-        expect(request.params['lat'].to_f).to be_kind_of(Float)
-        expect(request.params['lng'].to_f).to be_kind_of(Float)
-        expect(request.params['range'].to_f).to be_kind_of(Float)
-        expect(request.params['price'].to_f).to be_kind_of(Float)
-      end
-      let!(:location) { create(:location, lat: 42.000, lng: 0.003)}
+
       let!(:locationWrong) { create(:location, lat: 53.00301, lng: 0.003)}
 
       let!(:room){ create_list(:room, 2, location_id:location.id) }
@@ -64,7 +58,6 @@ describe Badi::V1::Rooms do
       it 'returns a room list' do
         get "#{url}?lat=42.0000001&lng=0.0000&range=500&price=20"
         expect(json).to_not be_empty
-        print json
         expect(json.size).to eq(2)
       end
     end
