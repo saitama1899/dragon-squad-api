@@ -27,7 +27,6 @@ locations_ids = Location.ids
     owner: Faker::Games::Pokemon.name,
     location_id: location_id
   )
-  Location.find(location_id).total_rooms += 1
 end
 
 rooms_ids = Room.ids
