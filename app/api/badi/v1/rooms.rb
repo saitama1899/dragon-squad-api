@@ -21,14 +21,32 @@ module Badi
             optional :price
           end
 
+          with(type: Integer, allow_blank: {value: false, message: 'cannot be blank'}) do
+            optional :p
+          end
+
         end
         get do
           lat = params[:lat]
           lng = params[:lng]
           range = params[:range]
+          page=params[:p]
 
           rooms = RoomSearcher.search_rooms_by_coordinates(lat, lng, range)
-          present rooms, with: Badi::Entities::Room
+          result=[]
+
+
+          if page.present?
+            if page < 0
+              page=1
+            elsif page > rooms.page(page).total_pages
+              page=rooms.page(page).total_pages
+            end
+            result=rooms.page(page)
+          else
+            result=rooms.page(1)
+          end
+          present result, with: Badi::Entities::Room
         end
 
         desc 'Returns a specific room'
