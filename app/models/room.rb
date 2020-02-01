@@ -11,6 +11,7 @@ class Room < ApplicationRecord
     validates_presence_of :description, length: { maximum: 300 }
     validates_presence_of :price, numericality: true, greater_than: 0
     after_create :roomIncrement
+    before_delete :roomDecrement
 
     #callbacks
     private
@@ -21,9 +22,12 @@ class Room < ApplicationRecord
 
       end
       def roomDecrement
-        location=Location.find_by_id(self.location_id)
-        location.total_rooms -= 1
-        location.save
+
+          location=Location.find_by_id(self.location_id)
+          if location.present?
+            location.total_rooms -= 1
+            location.save
+          end
       end
 
   end
