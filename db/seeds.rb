@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'database_cleaner'
 require 'opencage/geocoder'
 # This cleans after each rails db:seed (we need this on develop process)
@@ -34,6 +36,6 @@ rooms_ids = Room.ids
   height = Faker::Number.normal(mean: 720, standard_deviation: 50).to_i
   Photo.create!(
     room_id: rooms_ids.sample,
-    url: "http://placehold.it/#{width}x#{height}",
+    url: "http://placehold.it/#{width}x#{height}"
   )
 end

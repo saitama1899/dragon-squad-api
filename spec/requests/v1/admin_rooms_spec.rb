@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Badi::V1::AdminRooms do
-  let!(:location){create(:location)}
+  let!(:location) { create(:location) }
 
-  let!(:rooms) { create_list(:room, 15,location_id: location.id) }
-
-
+  let!(:rooms) { create_list(:room, 15, location_id: location.id) }
 
   # GET /admin/rooms
   describe 'GET /admin/rooms' do
@@ -20,14 +20,12 @@ describe Badi::V1::AdminRooms do
       expect(json.size).to eq(15)
     end
 
-    before { get '/api/v1/admin/rooms'}
-      it 'returns rooms with price <= 1000' do
-        json.length.times do |i|
-
+    before { get '/api/v1/admin/rooms' }
+    it 'returns rooms with price <= 1000' do
+      json.length.times do |i|
         expect(json[i]['price'].to_d).to be_between(0.0, 1000.0).inclusive
       end
     end
-
   end
 
   let(:room_id) { rooms.first.id }
@@ -37,7 +35,6 @@ describe Badi::V1::AdminRooms do
     before { get "/api/v1/admin/rooms/#{room_id}" }
 
     context 'when the record exists' do
-
       it 'returns the room' do
         expect(json).not_to be_empty
         expect(json['id']).to eq(room_id)
@@ -55,6 +52,5 @@ describe Badi::V1::AdminRooms do
         expect(response).to have_http_status(500)
       end
     end
-
   end
 end

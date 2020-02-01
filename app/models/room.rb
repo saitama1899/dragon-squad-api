@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Room < ApplicationRecord
   has_many :photos, dependent: :destroy
   belongs_to :location
@@ -7,20 +9,20 @@ class Room < ApplicationRecord
 
   after_create :roomIncrement
 
-  #callbacks
+  # callbacks
   private
-    def roomIncrement
-      location=Location.find_by_id(self.location_id)
-      location.total_rooms += 1
+
+  def roomIncrement
+    location = Location.find_by_id(location_id)
+    location.total_rooms += 1
+    location.save
+  end
+
+  def roomDecrement
+    location = Location.find_by_id(location_id)
+    if location.present?
+      location.total_rooms -= 1
       location.save
-
     end
-    def roomDecrement
-      location=Location.find_by_id(self.location_id)
-      if location.present?
-        location.total_rooms -= 1
-        location.save
-      end
-    end
-
+  end
 end

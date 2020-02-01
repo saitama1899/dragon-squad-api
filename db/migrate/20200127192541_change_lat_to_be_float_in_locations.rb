@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeLatToBeFloatInLocations < ActiveRecord::Migration[6.0]
   def change
     change_column :locations, :lat, :float
