@@ -94,17 +94,16 @@ describe Badi::V1::Rooms do
     end
   end
   describe 'GET /rooms?lat=x&lng=x&range=x&p=x' do
-    #good context
-    let!(:location) { create(:location, lat: 42.00301, lng: 0.003)}
+    # good context
+    let!(:location) { create(:location, lat: 42.00301, lng: 0.003) }
 
+    let!(:locationWrong) { create(:location, lat: 53.00301, lng: 0.003) }
 
-    let!(:locationWrong) { create(:location, lat: 53.00301, lng: 0.003)}
-
-    let!(:roomFirst){ create_list(:room, 20, title:"First", location_id:location.id) }
-    let!(:roomSecond){ create_list(:room, 20, title:"Second", location_id:location.id) }
-    let!(:roomThird){ create_list(:room, 15, title:"Third", location_id:location.id) }
-    let!(:wrong_room){ create_list(:room, 60,location_id:locationWrong.id) }
-    #Good Context
+    let!(:roomFirst) { create_list(:room, 20, title: 'First', location_id: location.id) }
+    let!(:roomSecond) { create_list(:room, 20, title: 'Second', location_id: location.id) }
+    let!(:roomThird) { create_list(:room, 15, title: 'Third', location_id: location.id) }
+    let!(:wrong_room) { create_list(:room, 60, location_id: locationWrong.id) }
+    # Good Context
     context 'URL ACCEPT' do
       it 'should return 20 rooms' do
         get "#{url}?lat=42.0000001&lng=0.0000&range=500"
@@ -113,17 +112,17 @@ describe Badi::V1::Rooms do
       it 'should return first 20 rooms' do
         get "#{url}?lat=42.0000001&lng=0.0000&range=500"
 
-        expect(json.first["title"]).to eq("First")
+        expect(json.first['title']).to eq('First')
       end
       it 'should return Second 20 rooms' do
         get "#{url}?lat=42.0000001&lng=0.0000&range=500&p=2"
         # print json.first["title"]
-        expect(json.first["title"]).to eq("Second")
+        expect(json.first['title']).to eq('Second')
       end
 
       it 'should return third 20 rooms even with a out of range page' do
         get "#{url}?lat=42.0000001&lng=0.0000&range=500&p=4"
-        expect(json.first["title"]).to eq("Third")
+        expect(json.first['title']).to eq('Third')
       end
       it 'should return third 20 rooms even with a out of range page' do
         get "#{url}?lat=42.0000001&lng=0.0000&range=500&p=3"

@@ -51,8 +51,8 @@ gem 'dotenv-rails', groups: %i[development test]
 
 gem 'kaminari'
 
-group :development, :test,:production do
-# Use faker to generate fake data
+group :development, :test, :production do
+  # Use faker to generate fake data
   gem 'faker'
   # Use database cleaner to remove fake data
   gem 'database_cleaner'
