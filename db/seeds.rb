@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 require 'database_cleaner'
 require 'opencage/geocoder'
 # This cleans after each rails db:seed (we need this on develop process)
 DatabaseCleaner.clean_with(:truncation)
-
-include SeedsHelper
 
 100.times do
   lat = Faker::Number.normal(mean: 40.4, standard_deviation: 0.25)
@@ -27,14 +27,15 @@ locations_ids = Location.ids
     owner: Faker::Games::Pokemon.name,
     location_id: location_id
   )
-  Location.find(location_id).total_rooms += 1
 end
 
 rooms_ids = Room.ids
 
 2000.times do
+  width = Faker::Number.normal(mean: 1280, standard_deviation: 50).to_i
+  height = Faker::Number.normal(mean: 720, standard_deviation: 50).to_i
   Photo.create!(
     room_id: rooms_ids.sample,
-    url: "http://placehold.it/#{width}x#{height}",
+    url: "http://placehold.it/#{width}x#{height}"
   )
 end

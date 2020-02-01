@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 include ApplicationHelper
 
 module Badi
@@ -11,7 +13,7 @@ module Badi
       resource :rooms do
         desc 'Returns a list of rooms that are within the boundaries'
         params do
-          with(type: Float, allow_blank: {value: false, message: 'cannot be blank'}) do
+          with(type: Float, allow_blank: { value: false, message: 'cannot be blank' }) do
             requires :lat, :lng, :range
           end
 

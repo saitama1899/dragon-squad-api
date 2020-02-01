@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Badi
   module V1
     class AdminRooms < Grape::API
@@ -24,7 +26,6 @@ module Badi
           end
         end
       end
-
     end
   end
 end
