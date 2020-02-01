@@ -49,8 +49,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Sharing configuration variables across environments
 gem 'dotenv-rails', groups: %i[development test]
 
-group :development, :test, :production do
-  # Use faker to generate fake data
+gem 'kaminari'
+
+group :development, :test,:production do
+# Use faker to generate fake data
   gem 'faker'
   # Use database cleaner to remove fake data
   gem 'database_cleaner'
