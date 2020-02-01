@@ -51,6 +51,8 @@ gem 'dotenv-rails', groups: %i[development test]
 
 gem 'kaminari'
 
+gem 'sidekiq', '~> 4.1', '>= 4.1.2'
+
 group :development, :test, :production do
   # Use faker to generate fake data
   gem 'faker'
