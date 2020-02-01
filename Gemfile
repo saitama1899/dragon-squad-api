@@ -24,7 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use gem faraday to make request outside this API
 gem 'faraday'
 # Use gem CORS for handling Cross-Origin Resource Sharing (CORS)
-gem 'rack-cors', '~> 0.3.1'
+gem 'rack-cors', '~> 1.0.5'
 
 # Use Grape as the framework for creating REST-like APIs
 gem 'grape', '~> 1.2'
@@ -42,18 +42,10 @@ gem 'listen'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-
-
 # Sharing configuration variables across environments
 gem 'dotenv-rails', groups: [:development, :test]
-
-# Token Authentication
-gem 'jwt'
-# Password encryptation
-gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test,:production do
 # Use faker to generate fake data
@@ -73,6 +65,9 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   # Use simplecov to see test code coverage
   gem 'simplecov'
+
+  gem 'webmock', '~> 3.8'
+  gem 'capybara'
 end
 
 group :development do

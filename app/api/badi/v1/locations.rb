@@ -16,19 +16,8 @@ module Badi
 
         get do
           param_location = params[:location]
-
-          locations = LocationSearcher.find_place(param_location)
-
-          results = []
-          locations.each do |item|
-            db_rooms = RoomSearcher.call(item[:id])
-             if db_rooms.present?
-               item[:total_rooms] = db_rooms.size
-               item[:rooms] = db_rooms.first(5) # return only the first five
-               results << item
-             end
-          end
-          present locations
+          result = LocationSearcher.find_place(param_location)
+          present result, with: Badi::Entities::Location
         end
       end
     end

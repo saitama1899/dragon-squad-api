@@ -3,25 +3,9 @@ require 'json'
 
 class RoomSearcher
 
-  def self.call(location_id)
-    result = Room.joins(:location).where(locations: {id: location_id})
-
-    rooms = []
-    if result.present?
-      rooms = Badi::Entities::RoomIndex.represent(result)
-    end
-
-    return rooms
-  end
-  def self.call(lat,lng,range)
+  def self.search_rooms_by_coordinates(lat, lng, range = 1000)
     Geocoder.configure(:units => :km)
-
-    boundaries=Geocoder::Calculations.bounding_box([lat,lng],range/1000)
-    result=Room.joins(:location).where(locations:{lat:boundaries[0]..boundaries[2],lng:boundaries[1]..boundaries[3]})
-    rooms = []
-    if result.present?
-      rooms = Badi::Entities::RoomIndex.represent(result)
-    end
-    return rooms
+    boundaries = Geocoder::Calculations.bounding_box([lat, lng], range / 1000)
+    Room.joins(:location).where(locations:{lat:boundaries[0]..boundaries[2],lng:boundaries[1]..boundaries[3]})
   end
 end

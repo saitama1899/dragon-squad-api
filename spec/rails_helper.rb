@@ -9,6 +9,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'database_cleaner'
+
+require 'simplecov'
+SimpleCov.start
 # configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -87,4 +90,7 @@ RSpec.configure do |config|
   config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\/api/
   # Support methods includers
   config.include RequestSpecHelper
+
+  require 'webmock/rspec'
+  WebMock.disable_net_connect!(allow_localhost: true)
 end

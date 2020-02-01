@@ -27,10 +27,10 @@ module Badi
           lng = params[:lng]
           range = params[:range]
 
-          rooms = RoomSearcher.call(lat, lng, range)
-
-          present rooms
+          rooms = RoomSearcher.search_rooms_by_coordinates(lat, lng, range)
+          present rooms, with: Badi::Entities::Room
         end
+
         desc 'Returns a specific room'
         route_param :id do
           get do
