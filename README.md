@@ -47,16 +47,14 @@ Table of Contents
 Main https://dragonsapi.herokuapp.com/api/v1/
 
 - GET /locations?location=mad 
-Return possible locations with the text you send as parameter with the keyword "location"
-https://dragonsapi.herokuapp.com/api/v1/locations?location=mad
-⚠️ Requires
-Can't be blank, type String, min. three letters. 
+    - Return possible locations with the text you send as parameter with the keyword "location"
+    - https://dragonsapi.herokuapp.com/api/v1/locations?location=mad
+    - ⚠️ Requires Can't be blank, type String, min. three letters. 
 
 - GET /rooms?lat=00.00&lng=-00.00&range=00
-Show rooms by coordinates
-https://dragonsapi.herokuapp.com/api/v1/rooms?lat=40.00000000000&lng=-3.000000000000&range=50000
-⚠️ Requires
-Can't be blank, type Float
+    - Show rooms by coordinates
+    - https://dragonsapi.herokuapp.com/api/v1/rooms?lat=40.00000000000&lng=-3.000000000000&range=50000
+     - ⚠️ Requires Can't be blank, type Float
 
 ---
 
@@ -65,4 +63,4 @@ Can't be blank, type Float
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
-- Copyright 2019 © <a href="" target="_blank">DragonSquad</a>.
+- Copyright 2020 © <a href="" target="_blank">DragonSquad</a>.
