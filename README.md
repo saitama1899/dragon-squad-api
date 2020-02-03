@@ -14,9 +14,8 @@
 Table of Contents 
 
 - [API](#api)
-- [Features](#features)
-- [Contributing](#contributing)
 - [Team](#team)
+- [Features](#features)
 - [FAQ](#faq)
 - [Support](#support)
 - [License](#license)
@@ -26,11 +25,11 @@ Table of Contents
 
 ## API
 * Ruby version 2.6.5p114 (2019-10-01 revision 67812) [x64-mingw32]
-* API rest with JSON responses
+* API rest with JSON responses, there are some URI examples 
 
 ## Team
 
-> Or Contributors/People
+> Most badass guys in the tech sector
 
 | <a href="https://github.com/felixjimcal" target="_blank">**felixjimcal**</a> | <a href="https://github.com/saitama1899" target="_blank">**saitama1899**</a> | <a href="https://github.com/Vaniik" target="_blank">**Vaniik**</a> |
 | :---: |:---:| :---:|
@@ -38,7 +37,7 @@ Table of Contents
 | <a href="https://github.com/felixjimcal" target="_blank">`https://github.com/felixjimcal`</a> | <a href="https://github.com/saitama1899" target="_blank">`https://github.com/saitama1899`</a> | <a href="https://github.com/Vaniik" target="_blank">`https://github.com/Vaniik`</a> |
 ---
 
-
+## Features
 
 ---
 
