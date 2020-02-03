@@ -147,7 +147,7 @@ describe Badi::V1::Rooms do
       create(:room, title: 'Cheap room', price: 300, visits: 3, location_id: location.id),
       create(:room, title: 'Cheapest room', price: 200, visits: 36, location_id: location.id)
     ] end
-    bounds = "?lat=#{lat}&=lng#{lng}&range=1000"
+    bounds = "?lat=#{lat}&lng=#{lng}&range=1000"
 
     context 'URL ACCEPT' do
       it 'should return 4 rooms (less than 600 price)' do
