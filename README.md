@@ -16,8 +16,6 @@ Table of Contents
 - [API](#api) 🌐
 - [Team](#team) 🧑‍🤝‍🧑
 - [Features](#features) 🚀
-- [FAQ](#faq) ⁉️
-- [Support](#support) 
 - [License](#license) 📜
 
 
@@ -26,6 +24,8 @@ Table of Contents
 ## API 🌐
 * Ruby version 2.6.5p114 (2019-10-01 revision 67812) [x64-mingw32]
 API rest with JSON responses, there are some URI examples 
+
+---
 
 ## Team
 
@@ -38,6 +38,7 @@ API rest with JSON responses, there are some URI examples
 ---
 
 ## Features
+
 
 ---
 
