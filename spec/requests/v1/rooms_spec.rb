@@ -7,24 +7,28 @@ describe Badi::V1::Rooms do
   let!(:rooms) { create_list(:room, 15, location_id: locationOne.id) }
   url = '/api/v1/rooms'
 
-  describe 'Get /:id' do
-    # Good Context
-    context 'URL accepted' do
-      it 'should return status ok' do
-        get "#{url}/#{rooms.first.id}"
+    describe 'Get /:id' do
+      # Good Context
+      context 'URL accepted' do
+        it 'should return status ok' do
+          get "#{url}/#{rooms.first.id}"
 
-        expect(response).to have_http_status(200)
+          expect(response).to have_http_status(200)
+        end
+
+        it 'should return json room' do
+          get "#{url}/#{rooms.first.id}"
+
+          expect(json['id']).to eq(rooms.first.id)
+        end
+        it 'should return visits 1' do
+          get "#{url}/#{rooms.first.id}"
+
+          expect(json['visits']).to eq(1)
+        end
       end
-
-      it 'should return json room' do
-        get "#{url}/#{rooms.first.id}"
-
-        expect(json['id']).to eq(rooms.first.id)
-      end
+      # Bad Context
     end
-
-    # Bad Context
-  end
 
   describe 'GET /rooms?lat=x&lng=x&range=x' do
     # Good context

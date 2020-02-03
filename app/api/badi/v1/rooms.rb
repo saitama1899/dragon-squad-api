@@ -33,7 +33,8 @@ module Badi
           range = params[:range]
           page = params[:p]
 
-          rooms = RoomSearcher.search_rooms_by_coordinates(lat, lng, range)
+          rooms = RoomSearcher.search_rooms_by_coordinates(lat, lng, range).order(visits: :desc)
+
           result = []
 
           if page.present?
@@ -52,7 +53,16 @@ module Badi
         desc 'Returns a specific room'
         route_param :id do
           get do
+            stat = RoomStat.new
+            stat.room_id = params[:id]
+            stat.request_ip = env['REMOTE_ADDR']
             room = Room.find(params[:id])
+            rs = RoomStat.where(['room_id = ? and request_ip = ?', stat.room_id, stat.request_ip])
+            if rs.size <= 1
+              room.visits += 1
+              room.save
+            end
+
             present room, with: Badi::Entities::Room
           end
         end
