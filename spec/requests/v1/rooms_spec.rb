@@ -134,4 +134,52 @@ describe Badi::V1::Rooms do
       end
     end
   end
+
+  describe 'GET /rooms?lat=x&lng=x&range=x&max_price=500&popular=1&order_by_price=1' do
+    let!(:location) { create(:location, lat: 40.43442881674111, lng: -3.548318834259536) }
+    let!(:rooms) do [
+      create(:room, title: 'Most expensive room', price: 600, visits: 67,  location_id: location.id),
+      create(:room, title: 'Expensive room', price: 500, visits: 7, location_id: location.id),
+      create(:room, title: 'Room', price: 400, visits: 45, location_id: location.id),
+      create(:room, title: 'Cheap room', price: 300, visits: 3, location_id: location.id),
+      create(:room, title: 'Cheapest room', price: 200, visits: 36, location_id: location.id)
+    ] end
+    bounds = "?lat=40.43442881674111&lng=-3.548318834259536&range=1000"
+
+    context 'URL ACCEPT' do
+      it 'should return 4 rooms (less than 600 price)' do
+        get "#{url + bounds}&max_price=550"
+        expect(json.size).to eq(4)
+      end
+      it 'should return the first room with price 200' do
+        get "#{url + bounds}&order_by_price=1"
+        expect(json.first['title']).to eq('Cheapest room')
+      end
+      it 'should return the first room with price 600' do
+        get "#{url + bounds}&order_by_price=0"
+        expect(json.first['title']).to eq('Most expensive room')
+      end
+      it 'should return the first room with more visits' do
+        get "#{url + bounds}&popular=1"
+        expect(json.first['visits']).to eq(67)
+      end
+      it 'should return the first room with less visits' do
+        get "#{url + bounds}&popular=0"
+        expect(json.first['visits']).to eq(3)
+      end
+      it 'should return the first room with more visits and max price 300' do
+        get "#{url + bounds}&popular=1&max_price=300"
+        expect(json.first['visits']).to eq(36)
+      end
+      it 'should return the first room with more visits, max price 500, order by price desc' do
+        get "#{url + bounds}&popular=1&max_price=500&order_by_price=0"
+        expect(json.first['title']).to eq("Expensive room")
+      end
+      it 'should return the first room with max price 600, order by price asc' do
+        get "#{url + bounds}&max_price=600&order_by_price=1"
+        expect(json.first['title']).to eq("Cheapest room")
+      end
+
+    end
+  end
 end
