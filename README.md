@@ -22,12 +22,16 @@ Table of Contents
 ---
 
 ## API 🌐
-* Ruby version 2.6.5p114 (2019-10-01 revision 67812) [x64-mingw32]
-API rest with JSON responses, there are some URI examples 
+### API
+- **Ruby on Rails**
+    - Ruby version 2.6.5p114 (2019-10-01 revision 67812) [x64-mingw32]
+### DataBase
+- **Postgres SQL**
+    - Psql (PostgreSQL) 2.0
 
 ---
 
-## Team
+## Team 🧑‍🤝‍🧑
 
 > Most badass developers
 
@@ -37,12 +41,26 @@ API rest with JSON responses, there are some URI examples
 | <a href="https://github.com/felixjimcal" target="_blank">`https://github.com/felixjimcal`</a> | <a href="https://github.com/saitama1899" target="_blank">`https://github.com/saitama1899`</a> | <a href="https://github.com/Vaniik" target="_blank">`https://github.com/Vaniik`</a> |
 ---
 
-## Features
+## Features 🚀
 
+### Some URI examples
+Main https://dragonsapi.herokuapp.com/api/v1/
+
+- GET /locations?location=mad 
+Return possible locations with the text you send as parameter with the keyword "location"
+https://dragonsapi.herokuapp.com/api/v1/locations?location=mad
+⚠️ Requires
+Can't be blank, type String, min. three letters. 
+
+- GET /rooms?lat=00.00&lng=-00.00&range=00
+Show rooms by coordinates
+https://dragonsapi.herokuapp.com/api/v1/rooms?lat=40.00000000000&lng=-3.000000000000&range=50000
+⚠️ Requires
+Can't be blank, type Float
 
 ---
 
-## License
+## License 📜
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
