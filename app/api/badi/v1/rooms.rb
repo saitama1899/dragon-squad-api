@@ -20,47 +20,28 @@ module Badi
           two_decimals = /^\d+\.?\d{0,2}$/ # => 99.00
           with(regexp: two_decimals) do
             requires :range
-            optional :max_price
           end
 
           with(type: Integer, allow_blank: { value: false, message: 'cannot be blank' }) do
-            optional :p
+            optional :max_price
+            optional :page
             optional :cheap
             optional :popular
           end
         end
+
         get do
           lat = params[:lat]
           lng = params[:lng]
           range = params[:range]
-          page = params[:p]
 
-          rooms = RoomSearcher.search_rooms_by_coordinates(lat, lng, range).order(visits: :desc)
+          rooms = RoomSearcher.search_rooms_by_coordinates(lat, lng, range)
 
-          if params[:cheap]
-            rooms = rooms.order(price: :asc)
-          end
+          rooms = RoomSearcher.sort_results(rooms, request.GET)
 
-          if params[:max_price]
-            rooms = rooms.where(["price <= :max_price", { max_price: params[:max_price] }])
-          end
+          rooms = RoomSearcher.pagination(rooms)
 
-          if params[:popular]
-            rooms = rooms.order(visits: :desc)
-          end
-
-          result = []
-          if page.present?
-            if page < 0
-              page = 1
-            elsif page > rooms.page(page).total_pages
-              page = rooms.page(page).total_pages
-            end
-            result = rooms.page(page)
-          else
-            result = rooms.page(1)
-          end
-          present result, with: Badi::Entities::Room
+          present rooms, with: Badi::Entities::RoomIndex
         end
 
         desc 'Returns a specific room'
