@@ -20,11 +20,13 @@ module Badi
           two_decimals = /^\d+\.?\d{0,2}$/ # => 99.00
           with(regexp: two_decimals) do
             requires :range
-            optional :price
+            optional :max_price
           end
 
           with(type: Integer, allow_blank: { value: false, message: 'cannot be blank' }) do
             optional :p
+            optional :cheap
+            optional :popular
           end
         end
         get do
@@ -35,8 +37,19 @@ module Badi
 
           rooms = RoomSearcher.search_rooms_by_coordinates(lat, lng, range).order(visits: :desc)
 
-          result = []
+          if params[:cheap]
+            rooms = rooms.order(price: :asc)
+          end
 
+          if params[:max_price]
+            rooms = rooms.where(["price <= :max_price", { max_price: params[:max_price] }])
+          end
+
+          if params[:popular]
+            rooms = rooms.order(visits: :desc)
+          end
+
+          result = []
           if page.present?
             if page < 0
               page = 1
