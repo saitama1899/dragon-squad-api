@@ -136,7 +136,10 @@ describe Badi::V1::Rooms do
   end
 
   describe 'GET /rooms?lat=x&lng=x&range=x&max_price=500&popular=1&order_by_price=1' do
-    let!(:location) { create(:location, lat: 40.43442881674111, lng: -3.548318834259536) }
+    lat = 40.43442881674111
+    lng = -3.548318834259536
+
+    let!(:location) { create(:location, lat: lat, lng: lng) }
     let!(:rooms) do [
       create(:room, title: 'Most expensive room', price: 600, visits: 67,  location_id: location.id),
       create(:room, title: 'Expensive room', price: 500, visits: 7, location_id: location.id),
@@ -144,7 +147,7 @@ describe Badi::V1::Rooms do
       create(:room, title: 'Cheap room', price: 300, visits: 3, location_id: location.id),
       create(:room, title: 'Cheapest room', price: 200, visits: 36, location_id: location.id)
     ] end
-    bounds = "?lat=40.43442881674111&lng=-3.548318834259536&range=1000"
+    bounds = "?lat=#{lat}&=lng#{lng}&range=1000"
 
     context 'URL ACCEPT' do
       it 'should return 4 rooms (less than 600 price)' do
