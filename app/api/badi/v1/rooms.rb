@@ -25,7 +25,7 @@ module Badi
           with(type: Integer, allow_blank: { value: false, message: 'cannot be blank' }) do
             optional :max_price
             optional :page
-            optional :cheap
+            optional :order_by_price
             optional :popular
           end
         end
