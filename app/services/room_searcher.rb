@@ -36,8 +36,8 @@ class RoomSearcher
     return rooms
   end
 
-  def self.pagination(rooms)
-
+  def self.pagination(rooms, params)
+    page = params[:page]
     if page.present?
       if page < 0
         page = 1

@@ -37,9 +37,9 @@ module Badi
 
           rooms = RoomSearcher.search_rooms_by_coordinates(lat, lng, range)
 
-          rooms = RoomSearcher.sort_results(rooms, request.GET)
+          rooms = RoomSearcher.sort_results(rooms, params)
 
-          rooms = RoomSearcher.pagination(rooms)
+          rooms = RoomSearcher.pagination(rooms, params)
 
           present rooms, with: Badi::Entities::RoomIndex
         end
