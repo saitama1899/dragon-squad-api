@@ -11,23 +11,19 @@ class RoomSearcher
   end
 
   def self.sort_results(rooms, params)
-    order_by_price = params[:order_by_price]
-    popular = params[:popular]
-
-    if order_by_price == 1
-      rooms = rooms.order(price: :asc)
-    elsif order_by_price == 0
-      rooms = rooms.order(price: :desc)
-    end
+    order_by_price = params[:order_by_price] == 1 ? "asc" : "desc"
+    popular = params[:popular] == 1 ? "desc" : "asc"
 
     if params[:max_price]
       rooms = rooms.where(['price <= :max_price', { max_price: params[:max_price] }])
     end
 
-    if popular == 1
-      rooms = rooms.order(visits: :desc)
-    elsif popular == 0
-      rooms = rooms.order(visits: :asc)
+    if params[:order_by_price] && params[:popular]
+      rooms = rooms.order("price #{order_by_price}, visits #{popular}")
+    elsif params[:order_by_price]
+      rooms = rooms.order("price #{order_by_price}")
+    elsif params[:popular]
+      rooms = rooms.order("visits #{popular}")
     end
 
     # [...]
