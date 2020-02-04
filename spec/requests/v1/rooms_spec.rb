@@ -3,12 +3,10 @@
 require 'rails_helper'
 
 describe Badi::V1::Rooms do
-  let!(:locationOne) { create(:location) }
-  let!(:rooms) { create_list(:room, 15, location_id: locationOne.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
-  url = '/api/v1/rooms'
+  base_url = '/api/v1/rooms'
 
   let!(:locations_one) { create(:location) }
-  let!(:rooms) { create_list(:room, 15, location_id: locations_one.id) }
+  let!(:rooms) { create_list(:room, 15, location_id: locations_one.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
 
   describe 'GET a single Room by :id' do
     context 'with a good request' do
@@ -96,20 +94,15 @@ describe Badi::V1::Rooms do
   describe 'GET a list of Rooms by bounds, range and giving pagination' do
     let!(:location) { create(:location, lat: 42.00301, lng: 0.003) }
     let!(:wrong_location) { create(:location, lat: 53.00301, lng: 0.003) }
-    let!(:rooms_first) { create_list(:room, 20, title: 'First', location_id: location.id) }
-    let!(:rooms_second) { create_list(:room, 20, title: 'Second', location_id: location.id) }
-    let!(:rooms_third) { create_list(:room, 15, title: 'Third', location_id: location.id) }
-    let!(:wrong_room) { create_list(:room, 60, location_id: wrong_location.id) }
+    let!(:rooms_first) { create_list(:room, 20, title: 'First', location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3)) }
+    let!(:rooms_second) { create_list(:room, 20, title: 'Second', location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
+    let!(:rooms_third) { create_list(:room, 20, title: 'Third', location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
+    let!(:wrong_room) { create_list(:room, 60, location_id: wrong_location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
 
     lat = 42.0000001
     lng = 0.0000
     bounds = "?lat=#{lat}&lng=#{lng}&range=500"
 
-    let!(:roomFirst) { create_list(:room, 20, title: 'First', location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
-    let!(:roomSecond) { create_list(:room, 20, title: 'Second', location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
-    let!(:roomThird) { create_list(:room, 15, title: 'Third', location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
-    let!(:wrong_room) { create_list(:room, 60, location_id: locationWrong.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
-    # Good Context
     context 'with good request' do
 
       it 'should return 20 rooms' do
@@ -134,7 +127,7 @@ describe Badi::V1::Rooms do
 
       it 'should return third 20 rooms even with a out of range page' do
         get "#{base_url}?lat=42.0000001&lng=0.0000&range=500&page=3"
-        expect(json.size).to eq(15)
+        expect(json.size).to eq(20)
       end
     end
   end
