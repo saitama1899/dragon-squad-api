@@ -119,17 +119,17 @@ describe Badi::V1::Rooms do
         expect(json.first['title']).to eq('First')
       end
       it 'should return Second 20 rooms' do
-        get "#{url}?lat=42.0000001&lng=0.0000&range=500&p=2"
+        get "#{url}?lat=42.0000001&lng=0.0000&range=500&page=2"
         # print json.first["title"]
         expect(json.first['title']).to eq('Second')
       end
 
       it 'should return third 20 rooms even with a out of range page' do
-        get "#{url}?lat=42.0000001&lng=0.0000&range=500&p=4"
+        get "#{url}?lat=42.0000001&lng=0.0000&range=500&page=4"
         expect(json.first['title']).to eq('Third')
       end
       it 'should return third 20 rooms even with a out of range page' do
-        get "#{url}?lat=42.0000001&lng=0.0000&range=500&p=3"
+        get "#{url}?lat=42.0000001&lng=0.0000&range=500&page=3"
         expect(json.size).to eq(15)
       end
     end
