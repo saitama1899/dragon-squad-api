@@ -13,8 +13,6 @@ class RoomSearcher
   def self.sort_results(rooms, params)
 
     order_by_price = params[:order_by_price]
-    popular = params[:popular]
-
     if order_by_price == 1
       rooms = rooms.order(price: :asc)
     elsif order_by_price == 0
@@ -25,13 +23,16 @@ class RoomSearcher
       rooms = rooms.where(["price <= :max_price", { max_price: params[:max_price] }])
     end
 
+    popular = params[:popular]
     if popular == 1
       rooms = rooms.order(visits: :desc)
     elsif popular == 0
       rooms = rooms.order(visits: :asc)
     end
 
-    # [...]
+    rooms = rooms.where({ deposit: params[:bills].present?   ? true : false })
+    rooms = rooms.where({ deposit: params[:deposit].present? ? true : false })
+
 
     return rooms
   end
