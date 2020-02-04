@@ -180,5 +180,19 @@ describe Badi::V1::Rooms do
         expect(json.first['title']).to eq('Cheapest room')
       end
     end
+
+    context 'with bad request' do
+      before { get "#{base_url + bounds}&max_price=" }
+      it 'should return a 400 status code' do
+        expect(response).to have_http_status(400)
+      end
+      it 'should return a error message' do
+        expect(json.first['messages'].last.to_s) == 'cannot be blank'
+      end
+      before { get "#{base_url}" }
+      it 'should return a text' do
+        expect(json).not_to be_empty
+      end
+    end
   end
 end
