@@ -33,6 +33,7 @@ locations_ids = Location.ids
     roommate_boys: Faker::Number.number(digits: 1),
     room_size: Faker::Number.number(digits: 2),
     property_size: Faker::Number.number(digits: 2),
+    visits: Faker::Number.number(digits: 2)
   )
 end
 

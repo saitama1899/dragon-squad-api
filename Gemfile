@@ -51,6 +51,9 @@ gem 'dotenv-rails', groups: %i[development test]
 
 gem 'kaminari'
 
+# Cron jobs
+gem 'rufus-scheduler'
+
 group :development, :test, :production do
   # Use faker to generate fake data
   gem 'faker'
@@ -79,6 +82,8 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   # Use rubocop to analyze code
   gem 'rubocop', '~> 0.59.0', require: false
+  # Our motivational gem!
+  gem 'be_a_dragon', '~> 0.1.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
