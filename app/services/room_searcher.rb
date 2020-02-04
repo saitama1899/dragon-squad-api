@@ -11,7 +11,6 @@ class RoomSearcher
   end
 
   def self.sort_results(rooms, params)
-
     order_by_price = params[:order_by_price]
     popular = params[:popular]
 
@@ -22,7 +21,7 @@ class RoomSearcher
     end
 
     if params[:max_price]
-      rooms = rooms.where(["price <= :max_price", { max_price: params[:max_price] }])
+      rooms = rooms.where(['price <= :max_price', { max_price: params[:max_price] }])
     end
 
     if popular == 1
@@ -33,7 +32,7 @@ class RoomSearcher
 
     # [...]
 
-    return rooms
+    rooms
   end
 
   def self.pagination(rooms, params)
@@ -49,6 +48,6 @@ class RoomSearcher
       rooms = rooms.page(1)
     end
 
-    return rooms
+    rooms
   end
 end

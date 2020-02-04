@@ -3,14 +3,12 @@
 require 'rails_helper'
 
 describe Badi::V1::Rooms do
-
   base_url = '/api/v1/rooms'
 
   let!(:locations_one) { create(:location) }
   let!(:rooms) { create_list(:room, 15, location_id: locations_one.id) }
 
   describe 'GET a single Room by :id' do
-
     context 'with a good request' do
       it 'should return status ok' do
         get "#{base_url}/#{rooms.first.id}"
@@ -30,7 +28,6 @@ describe Badi::V1::Rooms do
   end
 
   describe 'GET a list of Rooms by bounds and range' do
-
     context 'with a good request' do
       it 'returns status code 200' do
         get "#{base_url}?lat=42.00001&lng=0.0000&range=500"
@@ -107,12 +104,12 @@ describe Badi::V1::Rooms do
 
     context 'with good request' do
       it 'should return 20 rooms' do
-        get "#{base_url + bounds}"
+        get (base_url + bounds).to_s
         expect(json.size).to eq(20)
       end
 
       it 'should return the firsts rooms' do
-        get "#{base_url + bounds}"
+        get (base_url + bounds).to_s
         expect(json.first['title']).to eq('First')
       end
 
@@ -138,13 +135,15 @@ describe Badi::V1::Rooms do
     lng = -3.548318834259536
 
     let!(:location) { create(:location, lat: lat, lng: lng) }
-    let!(:rooms) do [
-      create(:room, title: 'Most expensive room', price: 600, visits: 67,  location_id: location.id),
-      create(:room, title: 'Expensive room', price: 500, visits: 7, location_id: location.id),
-      create(:room, title: 'Room', price: 400, visits: 45, location_id: location.id),
-      create(:room, title: 'Cheap room', price: 300, visits: 3, location_id: location.id),
-      create(:room, title: 'Cheapest room', price: 200, visits: 36, location_id: location.id)
-    ] end
+    let!(:rooms) do
+      [
+        create(:room, title: 'Most expensive room', price: 600, visits: 67, location_id: location.id),
+        create(:room, title: 'Expensive room', price: 500, visits: 7, location_id: location.id),
+        create(:room, title: 'Room', price: 400, visits: 45, location_id: location.id),
+        create(:room, title: 'Cheap room', price: 300, visits: 3, location_id: location.id),
+        create(:room, title: 'Cheapest room', price: 200, visits: 36, location_id: location.id)
+      ]
+    end
     bounds = "?lat=#{lat}&lng=#{lng}&range=1000"
 
     context 'with good request' do
@@ -174,13 +173,12 @@ describe Badi::V1::Rooms do
       end
       it 'should return the first room with more visits, max price 500, order by price desc' do
         get "#{base_url + bounds}&popular=1&max_price=500&order_by_price=0"
-        expect(json.first['title']).to eq("Expensive room")
+        expect(json.first['title']).to eq('Expensive room')
       end
       it 'should return the first room with max price 600, order by price asc' do
         get "#{base_url + bounds}&max_price=600&order_by_price=1"
-        expect(json.first['title']).to eq("Cheapest room")
+        expect(json.first['title']).to eq('Cheapest room')
       end
-
     end
   end
 end

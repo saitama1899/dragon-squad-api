@@ -9,6 +9,7 @@ module ApplicationHelper
     request = Faraday.get(url, location: keyword)
     results = JSON.parse(request.body)
   end
+
   def ip
     request.remote_ip
   end
