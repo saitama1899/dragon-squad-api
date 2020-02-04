@@ -59,7 +59,7 @@ module Badi
               room.visits += 1
               room.save
             end
-
+            room.onfire!
             present room, with: Badi::Entities::Room
           end
         end
