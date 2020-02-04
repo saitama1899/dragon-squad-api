@@ -12,7 +12,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_203_201_744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -42,16 +41,23 @@ ActiveRecord::Schema.define(version: 20_200_203_201_744) do
     t.index ['room_id'], name: 'index_room_stats_on_room_id'
   end
 
-  create_table 'rooms', force: :cascade do |t|
-    t.string 'title'
-    t.text 'description'
-    t.string 'owner'
-    t.integer 'price'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.bigint 'location_id'
-    t.integer 'visits', default: 0
-    t.index ['location_id'], name: 'index_rooms_on_location_id'
+  create_table "rooms", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "owner"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "location_id"
+    t.integer "visits", default: 0
+    t.boolean "bills_included"
+    t.boolean "deposit"
+    t.boolean "verified"
+    t.integer "roommate_girls"
+    t.integer "roommate_boys"
+    t.integer "room_size"
+    t.integer "property_size"
+    t.index ["location_id"], name: "index_rooms_on_location_id"
   end
 
   create_table 'users', force: :cascade do |t|

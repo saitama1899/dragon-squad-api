@@ -23,11 +23,14 @@ module Badi
           end
 
           with(type: Integer, allow_blank: { value: false, message: 'cannot be blank' }) do
-            optional :max_price
-            optional :page
-            optional :order_by_price
-            optional :popular
+            optional :max_price, :page, :order_by_price, :popular
+            optional :room_size
           end
+
+          with(type: Boolean, allow_blank: { value: false, message: 'cannot be blank' }) do
+            optional :bills, :deposit
+          end
+
         end
 
         get do

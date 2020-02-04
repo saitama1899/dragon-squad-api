@@ -9,6 +9,17 @@ class Room < ApplicationRecord
   validates_presence_of :price, numericality: true, greater_than: 0
   validates_presence_of :visits, numericality: true
 
+  validates :bills_included, inclusion: { in: [ true, false ] }
+  validates :deposit, inclusion: { in: [ true, false ] }
+
+  validates :verified, inclusion: { in: [ true, false ] }
+
+  validates_presence_of :roommate_girls, numericality: { :greater_than_or_equal_to => 0 }
+  validates_presence_of :roommate_boys, numericality: { :greater_than_or_equal_to => 0 }
+
+  validates_presence_of :room_size, numericality: { :greater_than_or_equal_to => 0 }
+  validates_presence_of :property_size, numericality: { :greater_than_or_equal_to => 0 }
+
   after_create :roomIncrement
 
   # callbacks
