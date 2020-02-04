@@ -25,6 +25,7 @@ locations_ids = Location.ids
     description: Faker::Lorem.paragraph,
     price: Faker::Number.number(digits: 3),
     owner: Faker::Games::Pokemon.name,
+    visits: Faker::Number.number(digits: 2),
     location_id: location_id
   )
 end
