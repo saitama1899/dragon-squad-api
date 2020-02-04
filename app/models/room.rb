@@ -9,6 +9,9 @@ class Room < ApplicationRecord
   validates_presence_of :price, numericality: true, greater_than: 0
   validates_presence_of :visits, numericality: true
 
+  validates_presence_of :onfire, numericality: true
+  enum onfire: { irrelevant: 0, onfire: 1 }
+
   validates :bills_included, inclusion: { in: [ true, false ] }
   validates :deposit, inclusion: { in: [ true, false ] }
 
