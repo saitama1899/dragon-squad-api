@@ -30,8 +30,15 @@ class RoomSearcher
       rooms = rooms.order(visits: :asc)
     end
 
-    rooms = rooms.where({ deposit: params[:bills].present?   ? true : false })
-    rooms = rooms.where({ deposit: params[:deposit].present? ? true : false })
+	bills = params[:bills]
+    if bills.present?
+      rooms = rooms.where({ bills_included: bills})
+    end
+
+    deposit_needed = params[:deposit]
+    if deposit_needed.present?
+      rooms = rooms.where({ deposit: deposit_needed})
+    end
 
 
     return rooms
