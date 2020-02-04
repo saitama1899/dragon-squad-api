@@ -11,7 +11,7 @@
 
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) [![Dependency Status](http://img.shields.io/gemnasium/badges/badgerbadgerbadger.svg?style=flat-square)](https://gemnasium.com/badges/badgerbadgerbadger) [![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)](https://coveralls.io/r/badges/badgerbadgerbadger)[![Gem Version](http://img.shields.io/gem/v/badgerbadgerbadger.svg?style=flat-square)](https://rubygems.org/gems/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) [![Badges](http://img.shields.io/:badges-9/9-ff6799.svg?style=flat-square)](https://github.com/badges/badgerbadgerbadger)
 
-Table of Contents 
+Table of Contents
 
 - [API](#api) 🌐
 - [Team](#team) 🧑‍🤝‍🧑
@@ -46,17 +46,39 @@ Table of Contents
 ### Some URI examples
 Main https://dragonsapi.herokuapp.com/api/v1/
 
-- GET /locations?location=mad 
+- GET /locations?location=mad
     - Return possible locations with the text you send as parameter with the keyword "location"
     - https://dragonsapi.herokuapp.com/api/v1/locations?location=mad
-    - ⚠️ Requires Can't be blank, type String, min. three letters. 
+    - ⚠️ Requires Can't be blank, type String, min. three letters.
+    - It can be used as an auto-fill
+    - Only search locations in our database
 
 - GET /rooms?lat=00.00&lng=-00.00&range=00
-    - Show rooms by coordinates
+    - Return a list of rooms inside a boundary box created from coordinates and range given on the URL
     - https://dragonsapi.herokuapp.com/api/v1/rooms?lat=40.00000000000&lng=-3.000000000000&range=50000
      - ⚠️ Requires Can't be blank, type Float
+    - There are 3 optional params to sort by: price/max price/popularity
+
+- GET /rooms/:id
+    - Return all data from a specific room
+    - Fields: title, description, price, owner, photos
+    - https://dragonsapi.herokuapp.com/api/v1/rooms/39
 
 ---
+
+## Internally 🚀
+We tried to abstract all the logic from endpoints into services.
+### Main services
+- LocationSearcher
+    - find_place(string location)
+
+    - reverse_geocode(float latitude,float longitude)
+- RoomSearcher
+    - search_rooms_by_coordinates(float latitude, float longitude, float range = 1000)
+
+    - sort_results(object[] rooms, string[] params)
+
+    - pagination(object[] rooms,string[] params)
 
 ## License 📜
 
