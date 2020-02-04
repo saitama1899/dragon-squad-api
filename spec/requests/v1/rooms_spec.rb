@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Badi::V1::Rooms do
   let!(:locationOne) { create(:location) }
-  let!(:rooms) { create_list(:room, 15, location_id: locationOne.id) }
+  let!(:rooms) { create_list(:room, 15, location_id: locationOne.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
   url = '/api/v1/rooms'
 
     describe 'Get /:id' do
@@ -55,8 +55,8 @@ describe Badi::V1::Rooms do
 
       let!(:locationWrong) { create(:location, lat: 53.00301, lng: 0.003) }
 
-      let!(:room) { create_list(:room, 2, location_id: location.id) }
-      let!(:wrong_room) { create_list(:room, 2, location_id: locationWrong.id) }
+      let!(:room) { create_list(:room, 2, location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
+      let!(:wrong_room) { create_list(:room, 2, location_id: locationWrong.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
 
       it 'returns a room list' do
         get "#{url}?lat=42.0000001&lng=0.0000&range=500&price=20"
@@ -90,7 +90,7 @@ describe Badi::V1::Rooms do
       end
 
       let!(:locationTwo) { create(:location, lat: 53.00301, lng: 0) }
-      let!(:room) { create_list(:room, 2, location_id: locationTwo.id) }
+      let!(:room) { create_list(:room, 2, location_id: locationTwo.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
       it 'returns a void room list' do
         get "#{url}?lat=42.0000001&lng=0.0000&range=500&price=20"
         expect(json).to be_empty
@@ -103,10 +103,10 @@ describe Badi::V1::Rooms do
 
     let!(:locationWrong) { create(:location, lat: 53.00301, lng: 0.003) }
 
-    let!(:roomFirst) { create_list(:room, 20, title: 'First', location_id: location.id) }
-    let!(:roomSecond) { create_list(:room, 20, title: 'Second', location_id: location.id) }
-    let!(:roomThird) { create_list(:room, 15, title: 'Third', location_id: location.id) }
-    let!(:wrong_room) { create_list(:room, 60, location_id: locationWrong.id) }
+    let!(:roomFirst) { create_list(:room, 20, title: 'First', location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
+    let!(:roomSecond) { create_list(:room, 20, title: 'Second', location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
+    let!(:roomThird) { create_list(:room, 15, title: 'Third', location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
+    let!(:wrong_room) { create_list(:room, 60, location_id: locationWrong.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
     # Good Context
     context 'URL ACCEPT' do
       it 'should return 20 rooms' do
@@ -141,11 +141,11 @@ describe Badi::V1::Rooms do
 
     let!(:location) { create(:location, lat: lat, lng: lng) }
     let!(:rooms) do [
-      create(:room, title: 'Most expensive room', price: 600, visits: 67,  location_id: location.id),
-      create(:room, title: 'Expensive room', price: 500, visits: 7, location_id: location.id),
-      create(:room, title: 'Room', price: 400, visits: 45, location_id: location.id),
-      create(:room, title: 'Cheap room', price: 300, visits: 3, location_id: location.id),
-      create(:room, title: 'Cheapest room', price: 200, visits: 36, location_id: location.id)
+      create(:room, title: 'Most expensive room', price: 600, visits: 67, location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3)),
+      create(:room, title: 'Expensive room', price: 500, visits: 7, location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3)),
+      create(:room, title: 'Room', price: 400, visits: 45, location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3)),
+      create(:room, title: 'Cheap room', price: 300, visits: 3, location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3)),
+      create(:room, title: 'Cheapest room', price: 200, visits: 36, location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3)),
     ] end
     bounds = "?lat=#{lat}&lng=#{lng}&range=1000"
 

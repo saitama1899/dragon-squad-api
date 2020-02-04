@@ -4,8 +4,7 @@ require 'rails_helper'
 
 describe Badi::V1::AdminRooms do
   let!(:location) { create(:location) }
-
-  let!(:rooms) { create_list(:room, 15, location_id: location.id) }
+  let!(:rooms) { create_list(:room, 15, location_id: location.id, bills_included: Faker::Boolean.boolean, deposit: Faker::Boolean.boolean, verified: Faker::Boolean.boolean, roommate_girls: Faker::Number.number(digits: 1), roommate_boys: Faker::Number.number(digits: 1), room_size: Faker::Number.number(digits: 2), property_size: Faker::Number.number(digits: 3))}
 
   # GET /admin/rooms
   describe 'GET /admin/rooms' do
