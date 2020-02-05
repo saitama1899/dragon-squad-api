@@ -4,9 +4,10 @@ require 'rufus-scheduler'
 
 scheduler = Rufus::Scheduler.new
 
-scheduler.cron '30 * * * *' do
-  BeADragon::MotivateMePls.random_sentence('Eric')
-end
+# Only on development
+# scheduler.cron '30 * * * *' do
+#   BeADragon::MotivateMePls.random_sentence('Eric')
+# end
 
 # Clears Rooms on fire (visited on last hour)
 scheduler.cron '0 * * * *' do
