@@ -23,7 +23,9 @@ Table of Contents
 ### DataBase
 - **Postgres SQL**
     - Psql (PostgreSQL) 2.0
-
+    
+### Quick JQuery Frontend
+[Quick JQuery Frontend (on development 05/02/20)](https://blaugranas.es/budi.html)
 ---
 
 ## Team
@@ -145,9 +147,10 @@ Why we did it like that? Pros and cons
 
 <img src="https://i.gyazo.com/130b40386df5f2697b266c9a088cd165.png" alt="diagrama-badi">
 
-
-### Quick JQuery Frontend
-[Quick JQuery Frontend (on development 05/02/20)](https://blaugranas.es/budi.html)
+### Gems
+#### TDD and Grape gems
+[This is explained in our guide here at wiki section](https://github.com/Vaniik/dragon-squad-api/wiki/API-with-Grape)
+#### more gems
 
 ## License
 
