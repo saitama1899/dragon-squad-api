@@ -8,10 +8,10 @@
 
 Table of Contents
 
-[API](#api)
-[Team](#team)
-[Features](#features)
-[License](#license)
+- [API](#api)
+- [Team](#team)
+- [Features](#features)
+- [License](#license)
 
 
 ---
