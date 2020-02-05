@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Badi
   module V1
     class Users < Grape::API
@@ -22,7 +24,7 @@ module Badi
           desc 'get a specific user'
           route_param :id do
             get do
-              user=User.find(params[:id])
+              user = User.find(params[:id])
               present user, with: Badi::Entities::User
             end
           end
@@ -38,26 +40,23 @@ module Badi
           end
           post do
             user = User.new(user_params)
-            if user.save
-              present user, with: Badi::Entities::User
-            end
+            present user, with: Badi::Entities::User if user.save
           end
 
           # PUT /users/{username}
           desc 'update an user'
           route_param :id do
             put do
-              user=User.find(params[:id])
+              user = User.find(params[:id])
               user.update(user_params)
             end
-
           end
 
           # DELETE /users/{username}
           desc 'delete an user'
           route_param :id do
             delete do
-              user=User.find(params[:id])
+              user = User.find(params[:id])
               user.destroy
             end
           end

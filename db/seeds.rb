@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 require 'database_cleaner'
 require 'opencage/geocoder'
 # This cleans after each rails db:seed (we need this on develop process)
-# DatabaseCleaner.clean_with(:truncation)
+
+DatabaseCleaner.clean_with(:truncation)
+
 
 100.times do
   lat = Faker::Number.normal(mean: 40.4, standard_deviation: 0.25)
@@ -23,17 +27,27 @@ locations_ids = Location.ids
     description: Faker::Lorem.paragraph,
     price: Faker::Number.number(digits: 3),
     owner: Faker::Games::Pokemon.name,
-    location_id: location_id
+    location_id: location_id,
+    bills_included: Faker::Boolean.boolean,
+    deposit: Faker::Boolean.boolean,
+    verified: Faker::Boolean.boolean,
+    roommate_girls: Faker::Number.number(digits: 1),
+    roommate_boys: Faker::Number.number(digits: 1),
+    room_size: Faker::Number.number(digits: 2),
+    property_size: Faker::Number.number(digits: 2),
+    visits: Faker::Number.number(digits: 2)
   )
 end
 
 rooms_ids = Room.ids
 
 2000.times do
-  width = Faker::Number.normal(mean: 1280, standard_deviation: 50)
-  height = Faker::Number.normal(mean: 720, standard_deviation: 50)
+
+  width = Faker::Number.normal(mean: 1280, standard_deviation: 50).to_i
+  height = Faker::Number.normal(mean: 720, standard_deviation: 50).to_i
+
   Photo.create!(
     room_id: rooms_ids.sample,
-    url: "http://placehold.it/#{width}x#{height}",
+    url: "http://placehold.it/#{width}x#{height}"
   )
 end
