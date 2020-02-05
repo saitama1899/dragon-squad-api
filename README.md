@@ -20,7 +20,7 @@
 
 Welcome!
 
-Here you will find our contribution to the "minimalsitic Badi app" challenge. We have used the, we believe, same tools as badi, we have even added our own gem.
+Here you will find our contribution to the "minimalsitic Badi app" challenge. We have used the, we believe, same tools as badi, we have even added our own gem. We have a deep explanation in our wiki.
 
 
 ---
