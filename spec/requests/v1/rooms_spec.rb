@@ -91,6 +91,7 @@ describe Badi::V1::Rooms do
     end
   end
 
+
   describe 'GET a list of Rooms by bounds, range and giving pagination' do
     let!(:location) { create(:location, lat: 42.00301, lng: 0.003) }
     let!(:wrong_location) { create(:location, lat: 53.00301, lng: 0.003) }
@@ -196,4 +197,5 @@ describe Badi::V1::Rooms do
       end
     end
   end
+
 end

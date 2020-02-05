@@ -7,6 +7,7 @@ class Room < ApplicationRecord
   validates_presence_of :title, length: { in: 6..30 }
   validates_presence_of :description, length: { maximum: 300 }
   validates_presence_of :price, numericality: true, greater_than: 0
+
   validates_presence_of :visits, numericality: true
 
   validates_presence_of :onfire, numericality: true
@@ -41,4 +42,5 @@ class Room < ApplicationRecord
       location.save
     end
   end
+
 end

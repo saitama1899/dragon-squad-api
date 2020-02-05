@@ -3,7 +3,9 @@
 require 'database_cleaner'
 require 'opencage/geocoder'
 # This cleans after each rails db:seed (we need this on develop process)
+
 DatabaseCleaner.clean_with(:truncation)
+
 
 100.times do
   lat = Faker::Number.normal(mean: 40.4, standard_deviation: 0.25)
@@ -40,8 +42,10 @@ end
 rooms_ids = Room.ids
 
 2000.times do
+
   width = Faker::Number.normal(mean: 1280, standard_deviation: 50).to_i
   height = Faker::Number.normal(mean: 720, standard_deviation: 50).to_i
+
   Photo.create!(
     room_id: rooms_ids.sample,
     url: "http://placehold.it/#{width}x#{height}"

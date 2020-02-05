@@ -22,6 +22,7 @@ module Badi
             requires :range
           end
 
+
           with(type: Integer, allow_blank: { value: false, message: 'cannot be blank' }) do
             optional :max_price, :page, :order_by_price, :popular
             optional :room_size
@@ -40,11 +41,13 @@ module Badi
 
           rooms = RoomSearcher.search_rooms_by_coordinates(lat, lng, range)
 
+
           rooms = RoomSearcher.sort_results(rooms, params)
 
           rooms = RoomSearcher.pagination(rooms, params)
 
           present rooms, with: Badi::Entities::RoomIndex
+
         end
 
         desc 'Returns a specific room'
