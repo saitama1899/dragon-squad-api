@@ -25,9 +25,9 @@ Table of Contents
     - Psql (PostgreSQL) 2.0
     
 ### Quick JQuery Frontend
-[Quick JQuery Frontend (on development 05/02/20)](https://blaugranas.es/budi.html)
----
-
+  [Quick JQuery Frontend (on development 05/02/20)](https://blaugranas.es/budi.html)
+  
+  ---
 ## Team
 
 > Most badass developers
