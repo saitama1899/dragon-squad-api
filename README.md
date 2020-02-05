@@ -1,4 +1,4 @@
-<img src="https://image.freepik.com/free-vector/dragon-squad-mascot-esport-logo_139366-199.jpg" title="DragonSquad" alt="DragonSquad" width="400" height="400" style="text-align:center">
+<img src="https://image.freepik.com/free-vector/dragon-squad-mascot-esport-logo_139366-199.jpg" title="DragonSquad" alt="DragonSquad" width="200" height="200">
 
 
 # DragonSquad API
@@ -124,7 +124,11 @@ We separated all the logic from endpoints into services.
   - User
   
 ### Backend logic schema
-  
+
+
+### Quick JQuery Frontend
+[Quick JQuery Frontend (on development 05/02/20)](https://blaugranas.es/budi.html)
+
 ## License
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
