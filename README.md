@@ -50,10 +50,10 @@ Main https://dragonsapi.herokuapp.com/api/v1/
 
 - GET /rooms?lat=00.00&lng=-00.00&range=00
     - Return a list of rooms inside a boundary box created from coordinates and range given on the URL
-    - https://dragonsapi.herokuapp.com/api/v1/rooms?lat=40.00000000000&lng=-3.000000000000&range=50000
+    - https://dragonsapi.herokuapp.com/api/v1/rooms?lat=40.64521937583381&lng=-3.4745317454325817&range=5000
     - Requires Can't be blank, type Float
     - Optional params to sort by: price, max price, popularity
-    - https://dragonsapi.herokuapp.com/api/v1/rooms?lat=40.00000000000&lng=-3.000000000000&range=50000&max_price=600&order_by_price=1
+    - https://dragonsapi.herokuapp.com/api/v1/rooms?lat=40.64521937583381&lng=-3.4745317454325817&range=5000&max_price=400&order_by_price=1
 
 - GET /rooms/:id
     - Return all data from a specific room
