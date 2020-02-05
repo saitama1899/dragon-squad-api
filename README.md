@@ -122,7 +122,23 @@ We separated all the logic from endpoints into services.
   - Photo (belongs to room)
   - RoomStat (belongs to room)
   - User
-  
+
+### BD and mock data
+DataBase: We access to our location database in order to do a predictive search.
+
+We have simulated a registry of 500 rooms spread over 100 locations around Madrid.
+We have done this creating random latitudes and longitudes near to Madrid and using reverse Geocode to stock the street name. Our objective with that is to achieve the following points:
+
+- Stock ONLY the locations registered by the users. 
+- By limiting it to the area of Madrid, we can implement an endpoint that returns the rooms to us in locations near the given location, calculating a range with the bounds. If we covered more territory, it would be less efficient to test.
+
+Why we did it like that? Pros and cons
+
+- The OpenCage API does not support autocompletion nor partial matching. Tested by us and confirmed by contacting with them. We tried to call his api in order to get a predictable response, but we found a Bug with the country code filter and they said later that they are not good at predictable search.
+- Pros: It allows a goos scalability and gives us more freedom: we can be more precise at searching, we can sort by countof rooms and show it to the users.
+- Cons: Our server wil have more work to do.
+
+
 ### Backend logic schema
 
 
