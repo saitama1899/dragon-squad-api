@@ -75,7 +75,7 @@ Main https://dragonsapi.herokuapp.com/api/v1/
 
 ---
 
-## Internally
+## Internally 🖥️
 We separated all the logic from endpoints into services.
 
 ### Main services
@@ -164,7 +164,7 @@ Why we did it like that? Pros and cons
 [This is explained in our guide here at wiki section](https://github.com/Vaniik/dragon-squad-api/wiki/API-with-Grape)
 #### more gems
 
-## License
+## License 📜
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
