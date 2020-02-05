@@ -104,12 +104,27 @@ We separated all the logic from endpoints into services.
     ```
 - Motivational sentences for the developer
     - We tested the cron function with some puts to the server, so we decided to make a simple ['Motivational sentences' Gem](https://github.com/saitama1899/be_a_dragon) to use with it to help us on development process.
+    ```ruby
+    require 'be_a_dragon'
+
+    scheduler = Rufus::Scheduler.new
+    motivation = BeADragon::MotivateMePls
+
+    scheduler.cron '30 * * * *' do
+      motivation.random_sentence('Eric')
+    end
+    ```
     <img src="https://i.gyazo.com/f89ee52abf4e3995dd26fd1ab90cd98e.png" title="DragonSquad" alt="DragonSquad" height="85" width="350">
 
-### Model relations and flieds
-
+### Model relations
+  - Location (has many rooms)
+  - Room (belongs to location, has many photos, has many room_stats)
+  - Photo (belongs to room)
+  - RoomStat (belongs to room)
+  - User
+  
 ### Backend logic schema
-
+  
 ## License
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
