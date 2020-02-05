@@ -85,7 +85,7 @@ group :development do
   # Use rubocop to analyze code
   gem 'rubocop', '~> 0.59.0', require: false
   # Our motivational gem!
-  gem 'be_a_dragon', '~> 0.1.3'
+  gem 'be_a_dragon'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
