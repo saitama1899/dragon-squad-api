@@ -8,10 +8,18 @@
 
 ### Table of Contents
 
+- [Introduction](#introduction)
 - [API](#api)
 - [Team](#team)
 - [Features](#features)
 - [License](#license)
+
+
+---
+
+## Introduction
+
+Bla bla la
 
 
 ---
