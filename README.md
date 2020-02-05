@@ -141,6 +141,8 @@ Why we did it like that? Pros and cons
 
 ### Backend logic schema
 
+<img src="https://i.gyazo.com/130b40386df5f2697b266c9a088cd165.png" alt="diagrama-badi">
+
 
 ### Quick JQuery Frontend
 [Quick JQuery Frontend (on development 05/02/20)](https://blaugranas.es/budi.html)
