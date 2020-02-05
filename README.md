@@ -94,6 +94,8 @@ We separated all the logic from endpoints into services.
 - Room on fire feature
     - Restart every hour the status "on fire" of a room
     - This enum status indicates if the Room was visited last hour or not
+    - This feature makes the user more interested and increases the possibility of the objective
+    - It's based on Ebay 'being watched' products
     ```ruby
       # Clears Rooms on fire (visited on last hour)
       scheduler.cron '0 * * * *' do
