@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Badi
   module Entities
     class User < Grape::Entity

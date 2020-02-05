@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_200033) do
+ActiveRecord::Schema.define(version: 2020_02_04_191844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_200033) do
     t.float "lng"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "total_rooms"
+    t.integer "total_rooms", default: 0
     t.index ["name"], name: "index_locations_on_name", unique: true
   end
 
@@ -33,14 +33,31 @@ ActiveRecord::Schema.define(version: 2020_01_31_200033) do
     t.index ["room_id"], name: "index_photos_on_room_id"
   end
 
+  create_table "room_stats", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.string "request_ip", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_room_stats_on_room_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "owner"
-    t.decimal "price"
+    t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "location_id"
+    t.integer "visits", default: 0
+    t.boolean "bills_included"
+    t.boolean "deposit"
+    t.boolean "verified"
+    t.integer "roommate_girls"
+    t.integer "roommate_boys"
+    t.integer "room_size"
+    t.integer "property_size"
+    t.integer "onfire", default: 0
     t.index ["location_id"], name: "index_rooms_on_location_id"
   end
 
@@ -54,5 +71,6 @@ ActiveRecord::Schema.define(version: 2020_01_31_200033) do
   end
 
   add_foreign_key "photos", "rooms"
+  add_foreign_key "room_stats", "rooms"
   add_foreign_key "rooms", "locations"
 end
