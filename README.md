@@ -11,10 +11,10 @@
 ### Table of Contents
 
 - [Introduction](#introduction)
-- [API](#api)
-- [Team](#team)
-- [Features](#features)
-- [License](#license)
+- [API 🌐](#api)
+- [Team 🧑‍🤝‍🧑](#team)
+- [Features 🚀](#features)
+- [License 📜](#license)
 
 
 ---
