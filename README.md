@@ -75,94 +75,21 @@ Main https://dragonsapi.herokuapp.com/api/v1/
 
 ---
 
-## Internally 🖥️
-We separated all the logic from endpoints into services.
+### Full Documentation on WIKI
 
-### Main services 🐕‍🦺
-- LocationSearcher
-    ```ruby
-      def self.find_place(location)
-        # Predictable location search logic, returns the first 5 results
-      end
-
-      def self.reverse_geocode(lat, lng)
-        # Returns the adress name of the bounds
-      end
-    ```
-- RoomSearcher
-    ```ruby
-      def self.search_rooms_by_coordinates(lat, lng, range = 1000)
-        # Find all the rooms nerby the bounds using a range
-      end
-
-      def self.sort_results(rooms, params)
-        # Sort that rooms list with diferent optional params
-      end
-
-      def pagination(rooms, params)
-        # Pagination logic to load a few rooms per page
-      end
-    ```
-
-### Cron jobs ⏲️
-- Room on fire feature
-    - Restart every hour the status "on fire" of a room
-    - This enum status indicates if the Room was visited last hour or not
-    - This feature makes the user more interested and increases the possibility of the objective
-    - It's based on Ebay 'being watched' products
-    ```ruby
-      # Clears Rooms on fire (visited on last hour)
-      scheduler.cron '0 * * * *' do
-        Room.onfire.each do |room|
-          room.irrelevant!
-        end
-      end
-    ```
-- Motivational sentences for the developer
-    - We tested the cron function with some puts to the server, so we decided to make a simple ['Motivational sentences' Gem](https://github.com/saitama1899/be_a_dragon) to use with it to help us on development process.
-    ```ruby
-    require 'be_a_dragon'
-
-    scheduler = Rufus::Scheduler.new
-    motivation = BeADragon::MotivateMePls
-
-    scheduler.cron '30 * * * *' do
-      motivation.random_sentence('Eric')
-    end
-    ```
-    <img src="https://i.gyazo.com/f89ee52abf4e3995dd26fd1ab90cd98e.png" title="DragonSquad" alt="DragonSquad" height="85" width="350">
-
-### Model relations 🛹
-  - Location (has many rooms)
-  - Room (belongs to location, has many photos, has many room_stats)
-  - Photo (belongs to room)
-  - RoomStat (belongs to room)
-  - User
-
-### BD and mock data 🗃️
-DataBase: We access to our location database in order to do a predictive search.
-
-We have simulated a registry of 500 rooms spread over 100 locations around Madrid.
-We have done this creating random latitudes and longitudes near to Madrid and using reverse Geocode to stock the street name. Our objective with that is to achieve the following points:
-
-- Stock ONLY the locations registered by the users. 
-- By limiting it to the area of Madrid, we can implement an endpoint that returns the rooms to us in locations near the given location, calculating a range with the bounds. If we covered more territory, it would be less efficient to test.
-
-Why we did it like that? Pros and cons
-
-- The OpenCage API does not support autocompletion nor partial matching. Tested by us and confirmed by contacting with them. We tried to call his api in order to get a predictable response, but we found a Bug with the country code filter and they said later that they are not good at predictable search.
-- Pros: It allows a goos scalability and gives us more freedom: we can be more precise at searching, we can sort by countof rooms and show it to the users.
-- Cons: Our server wil have more work to do.
+#### [GitHub Flow](https://github.com/Vaniik/dragon-squad-api/wiki/GitHub-Flow)
+#### [Grape and TDD](https://github.com/Vaniik/dragon-squad-api/wiki/API-with-Grape)
+#### [Backend logic schema](https://github.com/Vaniik/dragon-squad-api/wiki/Backend-logic-schema)
+#### [Main services](https://github.com/Vaniik/dragon-squad-api/wiki/Main-services)
+#### [BD and mock data](https://github.com/Vaniik/dragon-squad-api/wiki/BD-and-mock-data)
+#### [Endpoints](https://github.com/Vaniik/dragon-squad-api/wiki/Endpoints)
+#### [Cron jobs](https://github.com/Vaniik/dragon-squad-api/wiki/Cron-jobs)
+#### [Error handling](https://github.com/Vaniik/dragon-squad-api/wiki/Error-handling)
+#### [Pagination](https://github.com/Vaniik/dragon-squad-api/wiki/Pagination)
+#### [Deploy to Heroku](https://github.com/Vaniik/dragon-squad-api/wiki/Deploy-on-Heroku)
 
 
-### Backend logic schema 🏹
-
-<img src="https://i.gyazo.com/130b40386df5f2697b266c9a088cd165.png" alt="diagrama-badi">
-
-### Gems 💎
-#### TDD and Grape gems
-[This is explained in our guide here at wiki section](https://github.com/Vaniik/dragon-squad-api/wiki/API-with-Grape)
-#### more gems
+### [Trello project](https://trello.com/b/GICUoEJs/badiproject)
 
 ## License 📜
 
