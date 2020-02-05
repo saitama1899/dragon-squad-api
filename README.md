@@ -155,7 +155,7 @@ Why we did it like that? Pros and cons
 - Cons: Our server wil have more work to do.
 
 
-### Backend logic schema
+### Backend logic schema 🏹
 
 <img src="https://i.gyazo.com/130b40386df5f2697b266c9a088cd165.png" alt="diagrama-badi">
 
