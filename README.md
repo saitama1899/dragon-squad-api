@@ -104,7 +104,8 @@ We separated all the logic from endpoints into services.
     ```
 - Motivational sentences for the developer
     - We tested the cron function with some puts to the server, so we decided to make a simple ('Motivational sentences' Gem)[https://github.com/saitama1899/be_a_dragon] to use with it to help us on development process.
-    <img src="https://i.gyazo.com/f89ee52abf4e3995dd26fd1ab90cd98e.png" title="DragonSquad" alt="DragonSquad" height="200">
+
+    <img src="https://i.gyazo.com/f89ee52abf4e3995dd26fd1ab90cd98e.png" title="DragonSquad" alt="DragonSquad" style="max-width: 50%;">
 
 ## License
 
