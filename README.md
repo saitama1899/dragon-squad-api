@@ -78,7 +78,7 @@ Main https://dragonsapi.herokuapp.com/api/v1/
 ## Internally 🖥️
 We separated all the logic from endpoints into services.
 
-### Main services
+### Main services 🐕‍🦺
 - LocationSearcher
     ```ruby
       def self.find_place(location)
@@ -104,7 +104,7 @@ We separated all the logic from endpoints into services.
       end
     ```
 
-### Cron jobs
+### Cron jobs ⏲️
 - Room on fire feature
     - Restart every hour the status "on fire" of a room
     - This enum status indicates if the Room was visited last hour or not
@@ -132,14 +132,14 @@ We separated all the logic from endpoints into services.
     ```
     <img src="https://i.gyazo.com/f89ee52abf4e3995dd26fd1ab90cd98e.png" title="DragonSquad" alt="DragonSquad" height="85" width="350">
 
-### Model relations
+### Model relations 🛹
   - Location (has many rooms)
   - Room (belongs to location, has many photos, has many room_stats)
   - Photo (belongs to room)
   - RoomStat (belongs to room)
   - User
 
-### BD and mock data
+### BD and mock data 🗃️
 DataBase: We access to our location database in order to do a predictive search.
 
 We have simulated a registry of 500 rooms spread over 100 locations around Madrid.
@@ -159,7 +159,7 @@ Why we did it like that? Pros and cons
 
 <img src="https://i.gyazo.com/130b40386df5f2697b266c9a088cd165.png" alt="diagrama-badi">
 
-### Gems
+### Gems 💎
 #### TDD and Grape gems
 [This is explained in our guide here at wiki section](https://github.com/Vaniik/dragon-squad-api/wiki/API-with-Grape)
 #### more gems
