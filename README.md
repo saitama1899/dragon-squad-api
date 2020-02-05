@@ -28,7 +28,7 @@ Here you will find our contribution to the "minimalsitic Badi app" challenge. We
 
 ---
 
-## API
+## API 🌐
 
 - **Ruby on Rails**
     - Ruby version 2.6.5p114 (2019-10-01 revision 67812) [x64-mingw32]
@@ -40,7 +40,7 @@ Here you will find our contribution to the "minimalsitic Badi app" challenge. We
   [Quick JQuery Frontend (on development 05/02/20)](https://blaugranas.es/budi.html)
   
   ---
-## Team
+## Team 🧑‍🤝‍🧑
 
 > Most badass developers
 
@@ -50,7 +50,7 @@ Here you will find our contribution to the "minimalsitic Badi app" challenge. We
 | <a href="https://github.com/felixjimcal" target="_blank">`https://github.com/felixjimcal`</a> | <a href="https://github.com/saitama1899" target="_blank">`https://github.com/saitama1899`</a> | <a href="https://github.com/Vaniik" target="_blank">`https://github.com/Vaniik`</a> |
 ---
 
-## Features
+## Features 🚀
 
 ### Some URI examples
 Main https://dragonsapi.herokuapp.com/api/v1/
