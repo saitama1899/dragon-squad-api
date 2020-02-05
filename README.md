@@ -1,6 +1,8 @@
-<p align="center">
+<h1 align="center">
+  <br>
 <img src="https://image.freepik.com/free-vector/dragon-squad-mascot-esport-logo_139366-199.jpg" title="DragonSquad" alt="DragonSquad" width="200" height="200">
-</p>
+  <br>
+</h1>
 
 # DragonSquad API
 
