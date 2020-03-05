@@ -1,30 +1,10 @@
-<p align="center">
-<img src="https://image.freepik.com/free-vector/dragon-squad-mascot-esport-logo_139366-199.jpg" title="DragonSquad" alt="DragonSquad" width="200" height="200">
-</p>
-
-# DragonSquad API
-
-[![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) [![Dependency Status](http://img.shields.io/gemnasium/badges/badgerbadgerbadger.svg?style=flat-square)](https://gemnasium.com/badges/badgerbadgerbadger) [![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)](https://coveralls.io/r/badges/badgerbadgerbadger)[![Gem Version](http://img.shields.io/gem/v/badgerbadgerbadger.svg?style=flat-square)](https://rubygems.org/gems/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) [![Badges](http://img.shields.io/:badges-9/9-ff6799.svg?style=flat-square)](https://github.com/badges/badgerbadgerbadger)
-
-
-
-### Table of Contents
-
-- [Introduction](#introduction)
-- [API](#api)
-- [Team](#team)
-- [Features](#features)
-- [License](#license)
-
-
----
+# Minimalistic Badi API
 
 ## Introduction
 
 Welcome!
 
 Here you will find our contribution to the "minimalsitic Badi app" challenge. We have used the, we believe, same tools as badi, we have even added our own gem. We have a deep explanation in our wiki.
-
 
 ---
 
@@ -40,6 +20,20 @@ Here you will find our contribution to the "minimalsitic Badi app" challenge. We
   [Quick JQuery Frontend (on development 05/02/20)](https://blaugranas.es/budi.html)
   
   ---
+  
+### Full Documentation on WIKI
+
+#### [GitHub Flow](https://github.com/Vaniik/dragon-squad-api/wiki/GitHub-Flow)
+#### [Grape and TDD](https://github.com/Vaniik/dragon-squad-api/wiki/API-with-Grape)
+#### [Backend logic schema](https://github.com/Vaniik/dragon-squad-api/wiki/Backend-logic-schema)
+#### [Main services](https://github.com/Vaniik/dragon-squad-api/wiki/Main-services)
+#### [BD and mock data](https://github.com/Vaniik/dragon-squad-api/wiki/BD-and-mock-data)
+#### [Endpoints](https://github.com/Vaniik/dragon-squad-api/wiki/Endpoints)
+#### [Cron jobs](https://github.com/Vaniik/dragon-squad-api/wiki/Cron-jobs)
+#### [Error handling](https://github.com/Vaniik/dragon-squad-api/wiki/Error-handling)
+#### [Pagination](https://github.com/Vaniik/dragon-squad-api/wiki/Pagination)
+#### [Deploy to Heroku](https://github.com/Vaniik/dragon-squad-api/wiki/Deploy-on-Heroku)
+
 ## Team 🧑‍🤝‍🧑
 
 > Most badass developers
@@ -74,20 +68,6 @@ Main https://dragonsapi.herokuapp.com/api/v1/
     - https://dragonsapi.herokuapp.com/api/v1/rooms/39
 
 ---
-
-### Full Documentation on WIKI
-
-#### [GitHub Flow](https://github.com/Vaniik/dragon-squad-api/wiki/GitHub-Flow)
-#### [Grape and TDD](https://github.com/Vaniik/dragon-squad-api/wiki/API-with-Grape)
-#### [Backend logic schema](https://github.com/Vaniik/dragon-squad-api/wiki/Backend-logic-schema)
-#### [Main services](https://github.com/Vaniik/dragon-squad-api/wiki/Main-services)
-#### [BD and mock data](https://github.com/Vaniik/dragon-squad-api/wiki/BD-and-mock-data)
-#### [Endpoints](https://github.com/Vaniik/dragon-squad-api/wiki/Endpoints)
-#### [Cron jobs](https://github.com/Vaniik/dragon-squad-api/wiki/Cron-jobs)
-#### [Error handling](https://github.com/Vaniik/dragon-squad-api/wiki/Error-handling)
-#### [Pagination](https://github.com/Vaniik/dragon-squad-api/wiki/Pagination)
-#### [Deploy to Heroku](https://github.com/Vaniik/dragon-squad-api/wiki/Deploy-on-Heroku)
-
 
 ### [Trello project](https://trello.com/b/GICUoEJs/badiproject)
 
